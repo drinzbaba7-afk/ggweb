@@ -3,223 +3,237 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Albanian Empire RP - Portal</title>
+    <title>Albanian Empire RP | Official Website</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
     <style>
-        :root { --red: #e60000; --dark: #0a0a0a; --card: #151515; --text: #ffffff; --gold: #ffcc00; }
-        body { font-family: 'Segoe UI', sans-serif; background: var(--dark); color: var(--text); margin: 0; padding: 20px; }
-        .container { max-width: 900px; margin: auto; }
+        :root {
+            --primary: #e60000;
+            --bg: #050505;
+            --card-bg: #111111;
+            --text: #ffffff;
+            --accent: #ffcc00;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+
+        /* Navigation */
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 10%; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid var(--glass); }
+        .logo { font-size: 1.5rem; font-weight: 900; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; }
+        .nav-links a { color: white; text-decoration: none; margin-left: 20px; font-size: 0.9rem; font-weight: 600; transition: 0.3s; }
+        .nav-links a:hover { color: var(--primary); }
+
+        /* Hero Section */
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://i.imgur.com/8Qp2Z5W.jpg'); background-size: cover; background-position: center; padding: 0 20px; }
+        .hero h1 { font-size: 4rem; font-weight: 900; text-transform: uppercase; margin-bottom: 10px; animation: fadeInUp 1s; }
+        .hero p { font-size: 1.2rem; color: #ccc; max-width: 700px; margin-bottom: 30px; animation: fadeInUp 1.2s; }
+        .btn-group { display: flex; gap: 15px; animation: fadeInUp 1.4s; }
+        .btn { padding: 15px 35px; border-radius: 5px; font-weight: bold; text-decoration: none; text-transform: uppercase; transition: 0.3s; cursor: pointer; border: none; }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-primary:hover { background: #ff1a1a; box-shadow: 0 0 20px rgba(230, 0, 0, 0.4); transform: translateY(-3px); }
+        .btn-outline { border: 2px solid white; color: white; background: transparent; }
+        .btn-outline:hover { background: white; color: black; }
+
+        /* Features Section */
+        .features { padding: 100px 10%; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .feat-card { background: var(--card-bg); padding: 40px; border-radius: 15px; border-bottom: 4px solid var(--primary); transition: 0.3s; }
+        .feat-card:hover { transform: translateY(-10px); background: #1a1a1a; }
+        .feat-card h3 { color: var(--accent); margin-bottom: 15px; }
+
+        /* Portal Section */
+        .portal-section { padding: 100px 10%; background: #080808; }
+        .card { background: var(--card-bg); padding: 40px; border-radius: 20px; max-width: 600px; margin: auto; border: 1px solid var(--glass); }
         .hidden { display: none; }
-        .card { background: var(--card); padding: 25px; border-radius: 12px; border-top: 5px solid var(--red); margin-bottom: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        h1 { color: var(--red); text-align: center; text-transform: uppercase; letter-spacing: 2px; text-shadow: 2px 2px #000; }
-        h2 { color: var(--gold); text-align: center; }
-        input, textarea { width: 100%; padding: 12px; margin: 10px 0; background: #222; border: 1px solid #333; color: white; border-radius: 6px; box-sizing: border-box; font-size: 15px; }
-        button { width: 100%; padding: 14px; background: var(--red); border: none; color: white; font-weight: bold; cursor: pointer; border-radius: 6px; transition: 0.3s; text-transform: uppercase; }
-        button:hover { background: #ff1a1a; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(230, 0, 0, 0.4); }
-        .nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; background: var(--card); padding: 10px 20px; border-radius: 8px; border-bottom: 1px solid #333; }
-        .logout { background: #333; width: auto; padding: 8px 20px; font-size: 13px; }
-        .ticket-item { background: #1e1e1e; padding: 20px; border-radius: 8px; margin-bottom: 15px; border-left: 4px solid var(--red); animation: fadeIn 0.5s ease; }
-        .status-open { color: #00ff00; background: rgba(0,255,0,0.1); padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; }
-        .status-closed { color: #aaa; background: rgba(255,255,255,0.1); padding: 2px 8px; border-radius: 4px; font-size: 12px; }
-        .reply-box { margin-top: 15px; padding: 15px; background: #252525; border-radius: 6px; border: 1px dashed #444; color: #ddd; border-left: 3px solid var(--gold); }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        input, textarea { width: 100%; padding: 15px; margin: 10px 0; background: #1a1a1a; border: 1px solid #333; color: white; border-radius: 8px; font-family: inherit; }
+        .ticket-item { background: #181818; padding: 20px; border-radius: 10px; margin-top: 15px; border-left: 4px solid var(--primary); }
+        
+        /* Status Tags */
+        .status { font-size: 0.7rem; padding: 3px 10px; border-radius: 20px; text-transform: uppercase; font-weight: bold; }
+        .open { background: rgba(0, 255, 0, 0.1); color: #00ff00; }
+        .closed { background: rgba(255, 255, 255, 0.1); color: #aaa; }
+
+        /* Animations */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+        footer { text-align: center; padding: 40px; color: #555; font-size: 0.8rem; border-top: 1px solid var(--glass); }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>🇦🇱 Albanian Empire RP 🇦🇱</h1>
+<nav>
+    <div class="logo">Albanian Empire</div>
+    <div class="nav-links">
+        <a href="#">KREU</a>
+        <a href="#features">FEATURES</a>
+        <a href="#portal">SUPPORT</a>
+    </div>
+</nav>
 
-    <div id="login-section" class="card">
-        <h2>Sistemi i Menaxhimit</h2>
-        <p style="text-align:center; color: #888;">Shkruani Username tuaj IC ose Kodin e Adminit</p>
-        <input type="text" id="login-username" placeholder="Emri i lojtarit ose Admin Code...">
-        <button onclick="login()">HYR NË DASHBOARD</button>
+<section class="hero">
+    <h1>Eksperienca Supreme RP</h1>
+    <p>Bashkohu me serverin më të fuqishëm Shqiptar në FiveM. Ekonomi reale, makina moded dhe evente çdo natë.</p>
+    <div class="btn-group">
+        <a href="fivem://connect/IP_JUAJ" class="btn btn-primary">LUAJ TANI 🏎️</a>
+        <a href="#portal" class="btn btn-outline">HAP TIKETË 🎫</a>
+    </div>
+</section>
+
+<section class="features" id="features">
+    <div class="feat-card">
+        <h3>🚔 Policia & Emergjenca</h3>
+        <p>Sistemi më i avancuar i policisë me gradat reale dhe trajnime profesionale.</p>
+    </div>
+    <div class="feat-card">
+        <h3>💰 Ekonomi Reale</h3>
+        <p>Bëj biznes, blej shtëpi dhe makina luksoze. Çdo cent vlen në Albanian Empire.</p>
+    </div>
+    <div class="feat-card">
+        <h3>🏴‍☠️ Bandat & Mafiet</h3>
+        <p>Krijo perandorinë tënde kriminale me sisteme të dedikuara për gang-war dhe droge.</p>
+    </div>
+</section>
+
+<section class="portal-section" id="portal">
+    <div id="login-area" class="card">
+        <h2 style="text-align: center; margin-bottom: 20px;">Lobby i Lojtarit</h2>
+        <input type="text" id="username-input" placeholder="Emri në lojë ose Admin Code...">
+        <button class="btn btn-primary" style="width: 100%" onclick="handleLogin()">HYR NË SISTEM</button>
     </div>
 
-    <div id="player-dashboard" class="hidden">
-        <div class="nav">
-            <span id="welcome-msg" style="color: var(--gold); font-weight: bold;"></span>
-            <button class="logout" onclick="logout()">LOGOUT</button>
+    <div id="player-view" class="card hidden">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h3 id="user-display"></h3>
+            <button onclick="location.reload()" style="background:none; border:none; color:red; cursor:pointer;">Dil</button>
         </div>
-        
-        <div class="card">
-            <h3>Hap një Tiketë të Re 🎫</h3>
-            <input type="text" id="ticket-subject" placeholder="Subjekti (p.sh. Problem me mjetin / Gradat)">
-            <textarea id="ticket-msg" rows="4" placeholder="Shpjegoni problemin tuaj..."></textarea>
-            <button onclick="createTicket()">DËRGO TIKETËN</button>
+        <div style="border-bottom: 1px solid #333; margin-bottom: 20px; padding-bottom: 20px;">
+            <h4>Krijo Tiketë</h4>
+            <input type="text" id="t-subject" placeholder="Subjekti...">
+            <textarea id="t-msg" rows="3" placeholder="Përshkruaj nevojën tuaj..."></textarea>
+            <button class="btn btn-primary" style="width: 100%" onclick="submitTicket()">DËRGO</button>
         </div>
-
-        <h3 style="border-bottom: 2px solid var(--red); display: inline-block;">Tiketat e mia</h3>
-        <div id="my-tickets"></div>
+        <h4>Historiku Juaj</h4>
+        <div id="player-tickets-list"></div>
     </div>
 
-    <div id="admin-panel" class="hidden">
-        <div class="nav">
-            <span style="color: var(--red); font-weight: bold;">STAFF CONTROL PANEL 🛡️</span>
-            <button class="logout" onclick="logout()">LOGOUT</button>
-        </div>
-        
-        <h2>Tiketat e Lojtarëve</h2>
-        <div id="admin-tickets-list"></div>
-    </div>
-</div>
+    <div id="admin-view" class="card hidden" style="max-width: 900px;">
+        <h2 style="color: var(--primary); text-align: center;">PANELI I KONTROLLIT 🛡️</h2>
+        <div id="admin-master-list"></div>
+    </section>
+</section>
+
+<footer>
+    &copy; 2026 Albanian Empire Roleplay. Të gjitha të drejtat të rezervuara. <br>
+    Developed by Zo for Alpha 🇦🇱
+</footer>
 
 <script>
-    let currentUser = null;
-    let isAdmin = false;
+    // Webhook i fshehur (Base64)
+    const _secret = "aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTQ5MDgzNzA4ODQ0OTMzNTE2L3V2OEE3Y3FwNWRjQXFzX3l1cjJVeVR2WDFrdU9UQnA2dVNxbVVnLXNoT25Kb1lXQVFfNENnWEY2c3dsUW9ON215Nk9U";
+    const hook = () => atob(_secret);
 
-    // WEBHOOK HIDDEN IN BASE64
-    const _0x4f22 = "aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTQ5MDgzNzA4ODQ0OTMzNTE2L3V2OEE3Y3FwNWRjQXFzX3l1cjJVeVR2WDFrdU9UQnA2dVNxbVVnLXNoT25Kb1lXQVFfNENnWEY2c3dsUW9ON215Nk9U";
-    const getW = () => atob(_0x4f22);
+    let user = "";
+    let tickets = JSON.parse(localStorage.getItem('ae_data')) || [];
 
-    let tickets = JSON.parse(localStorage.getItem('ae_tickets')) || [];
+    function handleLogin() {
+        const val = document.getElementById('username-input').value.trim();
+        if(!val) return;
 
-    function login() {
-        const input = document.getElementById('login-username').value.trim();
-        if (!input) return alert("Ju lutem shkruani një emër!");
+        user = val;
+        document.getElementById('login-area').classList.add('hidden');
 
-        if (input === 'albempireadminpanel') {
-            isAdmin = true;
-            currentUser = "Admin Staff";
-            document.getElementById('login-section').classList.add('hidden');
-            showAdminPanel();
+        if(val === 'albempireadminpanel') {
+            document.getElementById('admin-view').classList.remove('hidden');
+            renderAdmin();
         } else {
-            isAdmin = false;
-            currentUser = input;
-            document.getElementById('login-section').classList.add('hidden');
-            showPlayerDashboard();
+            document.getElementById('player-view').classList.remove('hidden');
+            document.getElementById('user-display').innerText = "User: " + val;
+            renderPlayer();
         }
     }
 
-    function logout() { location.reload(); }
+    async function submitTicket() {
+        const sub = document.getElementById('t-subject').value;
+        const msg = document.getElementById('t-msg').value;
+        if(!sub || !msg) return alert("Plotëso fushat!");
 
-    function showPlayerDashboard() {
-        document.getElementById('player-dashboard').classList.remove('hidden');
-        document.getElementById('welcome-msg').innerText = "Lojtari: " + currentUser;
-        renderPlayerTickets();
-    }
-
-    function showAdminPanel() {
-        document.getElementById('admin-panel').classList.remove('hidden');
-        renderAdminTickets();
-    }
-
-    async function createTicket() {
-        const subject = document.getElementById('ticket-subject').value;
-        const msg = document.getElementById('ticket-msg').value;
-
-        if (!subject || !msg) return alert("Plotëso të gjitha fushat!");
-
-        const newTicket = {
+        const t = {
             id: Date.now(),
-            user: currentUser,
-            subject: subject,
-            message: msg,
-            status: 'E Hapur',
-            reply: null,
-            date: new Date().toLocaleString('sq-AL')
+            owner: user,
+            subject: sub,
+            text: msg,
+            status: 'OPEN',
+            reply: null
         };
 
-        tickets.push(newTicket);
-        saveTickets();
+        tickets.push(t);
+        localStorage.setItem('ae_data', JSON.stringify(tickets));
         
-        // SEND TO DISCORD
-        await sendToDiscord(newTicket);
+        // Discord Webhook
+        await fetch(hook(), {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                embeds: [{
+                    title: "🚀 TIKETË E RE: " + sub,
+                    color: 15105536,
+                    description: `**Lojtari:** ${user}\n**Mesazhi:** ${msg}`,
+                    timestamp: new Date()
+                }]
+            })
+        });
 
-        renderPlayerTickets();
-        document.getElementById('ticket-subject').value = "";
-        document.getElementById('ticket-msg').value = "";
-        alert("Tiketa u dërgua! Stafi është njoftuar në Discord.");
+        renderPlayer();
+        document.getElementById('t-subject').value = "";
+        document.getElementById('t-msg').value = "";
     }
 
-    async function sendToDiscord(ticket) {
-        const payload = {
-            username: "Albanian Empire Bot",
-            embeds: [{
-                title: "🎫 TIKETË E RE",
-                color: 15105536,
-                fields: [
-                    { name: "👤 Lojtari", value: ticket.user, inline: true },
-                    { name: "📅 Data", value: ticket.date, inline: true },
-                    { name: "📌 Subjekti", value: ticket.subject },
-                    { name: "📝 Mesazhi", value: ticket.message }
-                ],
-                footer: { text: "Menaxhimi i Serverit Albanian Empire" }
-            }]
-        };
-
-        try {
-            await fetch(getW(), {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            });
-        } catch (e) { console.error("Discord error", e); }
-    }
-
-    function renderPlayerTickets() {
-        const container = document.getElementById('my-tickets');
-        container.innerHTML = "";
-        const myTickets = tickets.filter(t => t.user === currentUser);
-
-        if(myTickets.length === 0) container.innerHTML = "<p style='color:#555; text-align:center;'>Nuk keni asnjë tiketë aktuale.</p>";
-
-        myTickets.forEach(t => {
-            container.innerHTML += `
+    function renderPlayer() {
+        const list = document.getElementById('player-tickets-list');
+        list.innerHTML = "";
+        tickets.filter(x => x.owner === user).forEach(t => {
+            list.innerHTML += `
                 <div class="ticket-item">
-                    <div style="display:flex; justify-content:space-between">
-                        <strong>${t.subject}</strong> 
-                        <span class="${t.status === 'E Hapur' ? 'status-open' : 'status-closed'}">${t.status}</span>
-                    </div>
-                    <p style="font-size: 14px; color: #bbb;">${t.message}</p>
-                    ${t.reply ? `<div class="reply-box"><strong>Përgjigja nga Admini:</strong><br>${t.reply}</div>` : ""}
+                    <span class="status ${t.status.toLowerCase()}">${t.status}</span>
+                    <strong>${t.subject}</strong>
+                    <p style="font-size:0.85rem; color:#888; margin-top:5px;">${t.text}</p>
+                    ${t.reply ? `<div style="color:var(--accent); margin-top:10px; font-size:0.85rem;"><b>Staff:</b> ${t.reply}</div>` : ""}
                 </div>
             `;
         });
     }
 
-    function renderAdminTickets() {
-        const container = document.getElementById('admin-tickets-list');
-        container.innerHTML = "";
-
+    function renderAdmin() {
+        const list = document.getElementById('admin-master-list');
+        list.innerHTML = "";
         tickets.forEach(t => {
-            container.innerHTML += `
-                <div class="card" style="border-left: 5px solid ${t.status === 'E Mbyllur' ? '#444' : '#e60000'}">
-                    <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
-                        <span style="color:var(--gold)">Lojtari: ${t.user}</span>
-                        <span style="font-size:11px; color:#888;">${t.date}</span>
-                    </div>
-                    <h4>${t.subject}</h4>
-                    <p style="background:#222; padding:10px; border-radius:4px; font-size:14px;">${t.message}</p>
-                    <textarea id="reply-${t.id}" placeholder="Shkruaj përgjigjen këtu...">${t.reply || ""}</textarea>
-                    <div style="display:flex; gap:10px;">
-                        <button style="background: #28a745; flex:2;" onclick="adminReply(${t.id})">KTHE PËRGJIGJE</button>
-                        <button style="background: #444; flex:1;" onclick="deleteTicket(${t.id})">FSHIJ</button>
-                    </div>
+            list.innerHTML += `
+                <div class="ticket-item" style="border-left-color: ${t.status === 'OPEN' ? 'green' : '#444'}">
+                    <p><b>Nga:</b> ${t.owner} | <b>Subjekti:</b> ${t.subject}</p>
+                    <p>${t.text}</p>
+                    <input type="text" id="rep-${t.id}" placeholder="Kthe përgjigje..." value="${t.reply || ''}">
+                    <button class="btn btn-primary" style="padding:5px 15px; font-size:0.7rem;" onclick="adminReply(${t.id})">RUAJ</button>
+                    <button onclick="delT(${t.id})" style="background:none; border:none; color:grey; cursor:pointer; margin-left:10px;">Fshij</button>
                 </div>
             `;
         });
     }
 
     function adminReply(id) {
-        const replyText = document.getElementById(`reply-${id}`).value;
-        const index = tickets.findIndex(t => t.id === id);
-        tickets[index].reply = replyText;
-        tickets[index].status = "E Mbyllur";
-        saveTickets();
-        alert("Përgjigja u ruajt!");
-        renderAdminTickets();
+        const r = document.getElementById('rep-' + id).value;
+        const i = tickets.findIndex(x => x.id === id);
+        tickets[i].reply = r;
+        tickets[i].status = "CLOSED";
+        localStorage.setItem('ae_data', JSON.stringify(tickets));
+        renderAdmin();
     }
 
-    function deleteTicket(id) {
-        if(confirm("Dëshiron ta fshish këtë tiketë?")) {
-            tickets = tickets.filter(t => t.id !== id);
-            saveTickets();
-            renderAdminTickets();
-        }
+    function delT(id) {
+        tickets = tickets.filter(x => x.id !== id);
+        localStorage.setItem('ae_data', JSON.stringify(tickets));
+        renderAdmin();
     }
-
-    function saveTickets() { localStorage.setItem('ae_tickets', JSON.stringify(tickets)); }
 </script>
 
 </body>
