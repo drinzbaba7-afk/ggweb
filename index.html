@@ -3,139 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Albanian Empire RP | Community Hub</title>
+    <title>Albanian Empire RP | Hub</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&display=swap" rel="stylesheet">
     <style>
-        :root { --red: #e60000; --bg: #0a0a0a; --card: #151515; --text: #fff; --gray: #888; }
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        :root { --red: #e60000; --bg: #0a0a0a; --card: #121212; --text: #fff; --gray: #888; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
         body { background: var(--bg); color: var(--text); line-height: 1.6; }
         .hidden { display: none !important; }
         .container { max-width: 1000px; margin: auto; padding: 20px; }
         
-        /* Auth & Cards */
-        .card { background: var(--card); border: 1px solid #222; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); margin-bottom: 20px; }
-        .red-line { height: 4px; background: var(--red); width: 100px; margin: 10px auto 20px; border-radius: 10px; }
+        /* Cards */
+        .card { background: var(--card); border: 1px solid #222; padding: 25px; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        h1 { font-size: 2.5rem; font-weight: 900; text-align: center; text-transform: uppercase; margin-bottom: 20px; }
+        h1 span { color: var(--red); }
 
-        /* Inputs & Buttons */
-        input, textarea { width: 100%; padding: 12px; margin: 8px 0; background: #1f1f1f; border: 1px solid #333; color: #fff; border-radius: 8px; outline: none; }
+        /* Form Elements */
+        input, textarea { width: 100%; padding: 12px; margin: 8px 0; background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 8px; outline: none; }
         input:focus { border-color: var(--red); }
-        .btn { padding: 12px 25px; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; text-transform: uppercase; }
+        .btn { padding: 12px 20px; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; text-transform: uppercase; }
         .btn-red { background: var(--red); color: #fff; width: 100%; }
-        .btn-red:hover { background: #ff1a1a; transform: translateY(-2px); }
-        .btn-outline { background: transparent; border: 1px solid var(--red); color: var(--red); }
-        .btn-outline:hover { background: var(--red); color: #fff; }
+        .btn-red:hover { background: #ff1a1a; }
+        .btn-small { padding: 5px 15px; font-size: 0.75rem; width: auto; }
 
-        /* Navigation Grid */
-        .nav-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px; }
-        .nav-item { background: var(--card); padding: 40px; border-radius: 15px; text-align: center; cursor: pointer; border: 1px solid #222; transition: 0.3s; }
-        .nav-item:hover { border-color: var(--red); transform: scale(1.03); background: #1a1a1a; }
-        .nav-item h3 { font-size: 1.5rem; color: var(--red); margin-bottom: 10px; }
+        /* Navigation */
+        .nav-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
+        .nav-item { background: var(--card); padding: 30px; border-radius: 12px; text-align: center; cursor: pointer; border: 1px solid #222; }
+        .nav-item:hover { border-color: var(--red); transform: translateY(-3px); }
 
-        /* Suggestions & Tickets */
-        .post-item { background: #1c1c1c; padding: 15px; border-radius: 10px; margin-bottom: 10px; border-left: 3px solid var(--red); }
-        .post-meta { font-size: 0.75rem; color: var(--gray); display: flex; justify-content: space-between; }
-        .status-pill { font-size: 0.6rem; padding: 2px 8px; border-radius: 10px; background: rgba(255,255,255,0.1); }
-
-        header { text-align: center; padding: 50px 0; }
-        header h1 { font-size: 3rem; font-weight: 900; }
-        header span { color: var(--red); }
+        /* Chat System */
+        .chat-box { background: #080808; padding: 15px; border-radius: 10px; max-height: 300px; overflow-y: auto; margin: 10px 0; border: 1px solid #222; }
+        .msg { margin-bottom: 10px; padding: 8px 12px; border-radius: 8px; font-size: 0.9rem; max-width: 80% }
+        .msg-user { background: #222; align-self: flex-start; }
+        .msg-staff { background: var(--red); color: white; margin-left: auto; }
+        .status-pill { font-size: 0.6rem; padding: 3px 8px; border-radius: 5px; text-transform: uppercase; font-weight: bold; }
+        .open { background: #00ff0022; color: #00ff00; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <header>
-        <h1>ALBANIAN <span>EMPIRE</span></h1>
-        <div class="red-line"></div>
-    </header>
+    <h1>ALBANIAN <span>EMPIRE</span></h1>
 
-    <div id="auth-box" class="card" style="max-width: 400px; margin: auto;">
+    <div id="auth-area" class="card" style="max-width: 400px; margin: auto;">
         <div id="login-form">
-            <h2 style="text-align: center;">Hyrja</h2>
-            <input type="text" id="l-user" placeholder="Username / Email">
+            <h2 style="text-align: center;">Login</h2>
+            <input type="text" id="l-user" placeholder="Username">
             <input type="password" id="l-pass" placeholder="Password">
             <button class="btn btn-red" onclick="handleLogin()">Login</button>
-            <p style="text-align: center; margin-top: 15px; font-size: 0.8rem; color: var(--gray); cursor: pointer;" onclick="toggleAuth()">Nuk ke llogari? Regjistrohu</p>
+            <p onclick="toggleAuth()" style="text-align:center; font-size: 0.8rem; margin-top: 10px; color: var(--gray); cursor:pointer;">Krijo llogari</p>
         </div>
         <div id="reg-form" class="hidden">
-            <h2 style="text-align: center;">Regjistrimi</h2>
-            <input type="text" id="r-email" placeholder="Email">
+            <h2 style="text-align: center;">Register</h2>
             <input type="text" id="r-user" placeholder="Username IC">
             <input type="password" id="r-pass" placeholder="Password">
-            <button class="btn btn-red" onclick="handleRegister()">Krijo Llogarinë</button>
-            <p style="text-align: center; margin-top: 15px; font-size: 0.8rem; color: var(--gray); cursor: pointer;" onclick="toggleAuth()">Hyr këtu</p>
+            <button class="btn btn-red" onclick="handleRegister()">Krijo</button>
+            <p onclick="toggleAuth()" style="text-align:center; font-size: 0.8rem; margin-top: 10px; color: var(--gray); cursor:pointer;">Ke llogari? Hyr</p>
         </div>
     </div>
 
     <div id="main-menu" class="hidden">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-            <h2>Mirësevjen, <span id="user-name" style="color: var(--red);"></span></h2>
-            <button class="btn btn-outline" style="padding: 5px 15px;" onclick="location.reload()">LOGOUT</button>
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h3>Përshëndetje, <span id="welcome-user" style="color:var(--red)"></span></h3>
+            <button class="btn btn-red btn-small" onclick="location.reload()">Logout</button>
         </div>
         <div class="nav-grid">
-            <div class="nav-item" onclick="showSection('about-sec')">
-                <h3>ℹ️ RRETH SERVERIT</h3>
-                <p>Mëso rregullat dhe informacionet e serverit.</p>
-            </div>
-            <div class="nav-item" onclick="showSection('ticket-sec')">
-                <h3>🎫 SUPPORT (TIKETË)</h3>
-                <p>Hap një tiketë private për stafin.</p>
-            </div>
-            <div class="nav-item" onclick="showSection('suggest-sec')">
-                <h3>💡 SUGJERIME</h3>
-                <p>Propozo diçka të re për komunitetin.</p>
-            </div>
-        </div>
-    </div>
-
-    <div id="about-sec" class="hidden card">
-        <button onclick="backToMenu()" class="btn btn-outline" style="margin-bottom: 20px;">⬅️ MBRAPA</button>
-        <h2>Rreth Albanian Empire RP</h2>
-        <p>Albanian Empire është serveri i parë në rajon që ofron ekonomi ultra-reale dhe sisteme të dedikuara për çdo lojtar.</p>
-        <div style="margin-top: 20px;">
-            <p>✅ <b>Makinat:</b> Mbi 500+ makina të modifikuara.</p>
-            <p>✅ <b>Ekonomia:</b> Starto me 10,000$ dhe ndërto perandorinë tënde.</p>
-            <p>✅ <b>Staffi:</b> I gatshëm 24/7 për t'ju ndihmuar.</p>
+            <div class="nav-item" onclick="switchSec('ticket-sec')">🎫 Support & Chat</div>
+            <div class="nav-item" onclick="switchSec('suggest-sec')">💡 Sugjerime</div>
+            <div class="nav-item" onclick="switchSec('about-sec')">ℹ️ Rregullat</div>
         </div>
     </div>
 
     <div id="ticket-sec" class="hidden card">
-        <button onclick="backToMenu()" class="btn btn-outline" style="margin-bottom: 20px;">⬅️ MBRAPA</button>
-        <h2>Hap një Tiketë Private</h2>
-        <input type="text" id="t-sub" placeholder="Subjekti i tiketës...">
-        <textarea id="t-msg" rows="4" placeholder="Shpjegoni problemin..."></textarea>
-        <button class="btn btn-red" onclick="sendTicket()">DËRGO TIKETËN</button>
-        <hr style="border: 0; border-top: 1px solid #333; margin: 20px 0;">
-        <h3>Tiketat e mia</h3>
-        <div id="my-tickets"></div>
+        <button onclick="switchSec('main-menu')" class="btn btn-red btn-small">⬅️ MBRAPA</button>
+        <h2 style="margin: 15px 0;">Sistemi i Tiketave 🎫</h2>
+        <input type="text" id="t-sub" placeholder="Subjekti...">
+        <textarea id="t-msg" placeholder="Shpjegoni problemin..."></textarea>
+        <button class="btn btn-red" onclick="createTicket()">Hap Tiketën</button>
+        <div id="my-tickets-list" style="margin-top:20px;"></div>
     </div>
 
     <div id="suggest-sec" class="hidden card">
-        <button onclick="backToMenu()" class="btn btn-outline" style="margin-bottom: 20px;">⬅️ MBRAPA</button>
-        <h2>Sugjerime Publike 💡</h2>
-        <div style="background: #111; padding: 20px; border-radius: 10px; margin-bottom: 30px;">
-            <textarea id="s-msg" rows="2" placeholder="Shkruaj sugjerimin tënd që ta shohin të gjithë..."></textarea>
-            <button class="btn btn-red" onclick="sendSuggestion()">POSTO SUGJERIMIN</button>
-        </div>
-        <div id="public-suggestions"></div>
+        <button onclick="switchSec('main-menu')" class="btn btn-red btn-small">⬅️ MBRAPA</button>
+        <h2 style="margin: 15px 0;">Sugjerime Publike 💡</h2>
+        <textarea id="s-msg" placeholder="Shkruaj një sugjerim..."></textarea>
+        <button class="btn btn-red" onclick="postSuggest()">Posto</button>
+        <div id="public-suggests" style="margin-top:20px;"></div>
     </div>
 
-    <div id="admin-panel" class="hidden card">
-        <div style="display: flex; justify-content: space-between;">
-            <h2 style="color: var(--red);">STAFF PANEL 🛡️</h2>
-            <button class="btn btn-outline" onclick="location.reload()">LOGOUT</button>
+    <div id="about-sec" class="hidden card">
+        <button onclick="switchSec('main-menu')" class="btn btn-red btn-small">⬅️ MBRAPA</button>
+        <h2>Rregullat e Albanian Empire</h2>
+        <p style="margin-top:10px;">1. Respekto stafin dhe lojtarët.<br>2. Ndalohet PowerGaming & MetaGaming.<br>3. Shijo eksperiencën!</p>
+    </div>
+
+    <div id="admin-panel" class="hidden">
+        <div class="card">
+            <div style="display:flex; justify-content:space-between;">
+                <h2 style="color:var(--red)">STAFF PANEL 🛡️</h2>
+                <button class="btn btn-red btn-small" onclick="location.reload()">Logout</button>
+            </div>
+            <hr style="border:1px solid #222; margin:15px 0;">
+            
+            <h3>Tiketat e Lojtarëve</h3>
+            <div id="admin-tickets"></div>
+            
+            <h3 style="margin-top:30px;">Sugjerimet (Kthe Përgjigje)</h3>
+            <div id="admin-suggests"></div>
         </div>
-        <h3>Tiketat e Lojtarëve</h3>
-        <div id="admin-tickets"></div>
     </div>
 </div>
 
 <script>
-    const _w = "aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTQ5MDgzNzA4ODQ0OTMzNTE2L3V2OEE3Y3FwNWRjQXFzX3l1cjJVeVR2WDFrdU9UQnA2dVNxbVVnLXNoT25Kb1lXQVFfNENnWEY2c3dsUW9ON215Nk9U";
-    
-    let users = JSON.parse(localStorage.getItem('ae_users')) || [];
-    let tickets = JSON.parse(localStorage.getItem('ae_tickets')) || [];
-    let suggestions = JSON.parse(localStorage.getItem('ae_suggests')) || [];
+    // Config
+    const _wh = "aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTQ5MDgzNzA4ODQ0OTMzNTE2L3V2OEE3Y3FwNWRjQXFzX3l1cjJVeVR2WDFrdU9UQnA2dVNxbVVnLXNoT25Kb1lXQVFfNENnWEY2c3dsUW9ON215Nk9U";
+    let users = JSON.parse(localStorage.getItem('ae_u')) || [];
+    let tickets = JSON.parse(localStorage.getItem('ae_t')) || [];
+    let suggests = JSON.parse(localStorage.getItem('ae_s')) || [];
     let session = null;
 
     function toggleAuth() {
@@ -145,13 +128,12 @@
 
     function handleRegister() {
         const u = document.getElementById('r-user').value;
-        const e = document.getElementById('r-email').value;
         const p = document.getElementById('r-pass').value;
-        if(!u || !p) return alert("Plotëso fushat!");
-        users.push({username: u, email: e, password: p});
-        localStorage.setItem('ae_users', JSON.stringify(users));
-        alert("Llogaria u krijua!");
-        toggleAuth();
+        if(u && p) {
+            users.push({u, p});
+            localStorage.setItem('ae_u', JSON.stringify(users));
+            alert("U krijua!"); toggleAuth();
+        }
     }
 
     function handleLogin() {
@@ -159,109 +141,128 @@
         const p = document.getElementById('l-pass').value;
 
         if(u === 'albadmin' && p === 'albadminpanel') {
-            session = { username: "ADMIN", role: "admin" };
-            document.getElementById('auth-box').classList.add('hidden');
+            session = {u: "ADMIN", role: 'admin'};
+            document.getElementById('auth-area').classList.add('hidden');
             document.getElementById('admin-panel').classList.remove('hidden');
             renderAdmin();
             return;
         }
 
-        const found = users.find(x => x.username === u && x.password === p);
-        if(found) {
-            session = { username: found.username, role: "user" };
-            document.getElementById('auth-box').classList.add('hidden');
+        const f = users.find(x => x.u === u && x.p === p);
+        if(f) {
+            session = {u: f.u, role: 'user'};
+            document.getElementById('auth-area').classList.add('hidden');
             document.getElementById('main-menu').classList.remove('hidden');
-            document.getElementById('user-name').innerText = session.username;
-        } else {
-            alert("Gabim në login!");
-        }
+            document.getElementById('welcome-user').innerText = f.u;
+        } else alert("Gabim!");
     }
 
-    function showSection(id) {
-        document.getElementById('main-menu').classList.add('hidden');
+    function switchSec(id) {
+        ['main-menu', 'ticket-sec', 'suggest-sec', 'about-sec'].forEach(s => document.getElementById(s).classList.add('hidden'));
         document.getElementById(id).classList.remove('hidden');
-        if(id === 'suggest-sec') renderSuggestions();
         if(id === 'ticket-sec') renderMyTickets();
+        if(id === 'suggest-sec') renderSuggests();
     }
 
-    function backToMenu() {
-        const sections = ['about-sec', 'ticket-sec', 'suggest-sec'];
-        sections.forEach(s => document.getElementById(s).classList.add('hidden'));
-        document.getElementById('main-menu').classList.remove('hidden');
-    }
-
-    // --- LOGJIKA E TIKETAVE ---
-    async function sendTicket() {
+    // TICKET LOGIC
+    function createTicket() {
         const sub = document.getElementById('t-sub').value;
         const msg = document.getElementById('t-msg').value;
         if(!sub || !msg) return;
 
-        const t = { id: Date.now(), owner: session.username, subject: sub, message: msg, reply: null };
+        const t = { id: Date.now(), owner: session.u, sub, chat: [{u: session.u, m: msg}], status: 'OPEN' };
         tickets.push(t);
-        localStorage.setItem('ae_tickets', JSON.stringify(tickets));
-        
-        await fetch(atob(_w), {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({ content: `🎫 **Tiketë e re nga ${session.username}**: ${sub}` })
-        });
+        saveT(); renderMyTickets();
+        fetch(atob(_wh), { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({content: `🎫 Tiketë e re nga **${session.u}**: ${sub}`})});
+    }
 
-        renderMyTickets();
-        document.getElementById('t-sub').value = ""; document.getElementById('t-msg').value = "";
+    function replyTicket(id, isAdmin = false) {
+        const input = document.getElementById(`reply-input-${id}`);
+        if(!input.value) return;
+        const idx = tickets.findIndex(x => x.id === id);
+        tickets[idx].chat.push({u: isAdmin ? "STAFF" : session.u, m: input.value});
+        saveT();
+        isAdmin ? renderAdmin() : renderMyTickets();
     }
 
     function renderMyTickets() {
-        const div = document.getElementById('my-tickets');
-        div.innerHTML = "";
-        tickets.filter(x => x.owner === session.username).forEach(t => {
-            div.innerHTML += `<div class="post-item"><b>${t.subject}</b><p>${t.message}</p>${t.reply ? `<p style="color:var(--red)">Staff: ${t.reply}</p>` : ''}</div>`;
-        });
-    }
-
-    // --- LOGJIKA E SUGJERIMEVE ---
-    function sendSuggestion() {
-        const msg = document.getElementById('s-msg').value;
-        if(!msg) return;
-        const s = { id: Date.now(), owner: session.username, text: msg };
-        suggestions.push(s);
-        localStorage.setItem('ae_suggests', JSON.stringify(suggestions));
-        document.getElementById('s-msg').value = "";
-        renderSuggestions();
-    }
-
-    function renderSuggestions() {
-        const div = document.getElementById('public-suggestions');
-        div.innerHTML = "";
-        suggestions.reverse().forEach(s => {
-            div.innerHTML += `
-                <div class="post-item">
-                    <div class="post-meta"><span>👤 ${s.owner}</span></div>
-                    <p style="margin-top:5px;">${s.text}</p>
+        const list = document.getElementById('my-tickets-list');
+        list.innerHTML = "";
+        tickets.filter(x => x.owner === session.u).reverse().forEach(t => {
+            let chatHtml = t.chat.map(m => `<div class="msg ${m.u === 'STAFF' ? 'msg-staff' : 'msg-user'}"><b>${m.u}:</b> ${m.m}</div>`).join('');
+            list.innerHTML += `
+                <div class="card">
+                    <span class="status-pill open">${t.status}</span>
+                    <h4>${t.sub}</h4>
+                    <div class="chat-box">${chatHtml}</div>
+                    <div style="display:flex; gap:10px;">
+                        <input type="text" id="reply-input-${t.id}" placeholder="Shkruaj mesazh..." style="margin:0;">
+                        <button class="btn btn-red btn-small" onclick="replyTicket(${t.id})">Dërgo</button>
+                    </div>
                 </div>`;
         });
     }
 
-    // --- ADMIN ---
+    // SUGGESTION LOGIC
+    function postSuggest() {
+        const m = document.getElementById('s-msg').value;
+        if(!m) return;
+        suggests.push({id: Date.now(), u: session.u, m, reply: null});
+        localStorage.setItem('ae_s', JSON.stringify(suggests));
+        renderSuggests();
+    }
+
+    function renderSuggests() {
+        const list = document.getElementById('public-suggests');
+        list.innerHTML = "";
+        suggests.slice().reverse().forEach(s => {
+            list.innerHTML += `<div class="card" style="border-left: 3px solid var(--red)">
+                <b>${s.u}:</b> ${s.m}
+                ${s.reply ? `<div style="color:var(--red); margin-top:10px;"><b>Staff:</b> ${s.reply}</div>` : ''}
+            </div>`;
+        });
+    }
+
+    // ADMIN LOGIC
     function renderAdmin() {
-        const div = document.getElementById('admin-tickets');
-        div.innerHTML = "";
-        tickets.forEach(t => {
-            div.innerHTML += `
-                <div class="post-item">
-                    <p><b>${t.owner}</b>: ${t.subject}</p>
-                    <input type="text" id="ans-${t.id}" placeholder="Përgjigja..." value="${t.reply || ''}">
-                    <button class="btn btn-red" style="padding:5px 10px; font-size:0.7rem;" onclick="adminReply(${t.id})">Ruaj</button>
+        const tList = document.getElementById('admin-tickets');
+        tList.innerHTML = "";
+        tickets.slice().reverse().forEach(t => {
+            let chatHtml = t.chat.map(m => `<div class="msg ${m.u === 'STAFF' ? 'msg-staff' : 'msg-user'}"><b>${m.u}:</b> ${m.m}</div>`).join('');
+            tList.innerHTML += `
+                <div class="card">
+                    <p><b>Lojtari:</b> ${t.owner} | <b>Subjekti:</b> ${t.sub}</p>
+                    <div class="chat-box">${chatHtml}</div>
+                    <div style="display:flex; gap:10px;">
+                        <input type="text" id="reply-input-${t.id}" placeholder="Përgjigju lojtarit..." style="margin:0;">
+                        <button class="btn btn-red btn-small" onclick="replyTicket(${t.id}, true)">Dërgo</button>
+                    </div>
+                </div>`;
+        });
+
+        const sList = document.getElementById('admin-suggests');
+        sList.innerHTML = "";
+        suggests.slice().reverse().forEach(s => {
+            sList.innerHTML += `
+                <div class="card">
+                    <p><b>${s.u}:</b> ${s.m}</p>
+                    <div style="display:flex; gap:10px;">
+                        <input type="text" id="s-rep-${s.id}" placeholder="Kthe përgjigje..." value="${s.reply || ''}" style="margin:0;">
+                        <button class="btn btn-red btn-small" onclick="replySuggest(${s.id})">Ruaj</button>
+                    </div>
                 </div>`;
         });
     }
 
-    function adminReply(id) {
-        const r = document.getElementById('ans-' + id).value;
-        const i = tickets.findIndex(x => x.id === id);
-        tickets[i].reply = r;
-        localStorage.setItem('ae_tickets', JSON.stringify(tickets));
-        alert("Përgjigja u ruajt!");
+    function replySuggest(id) {
+        const val = document.getElementById(`s-rep-${id}`).value;
+        const idx = suggests.findIndex(x => x.id === id);
+        suggests[idx].reply = val;
+        localStorage.setItem('ae_s', JSON.stringify(suggests));
+        renderAdmin();
     }
+
+    function saveT() { localStorage.setItem('ae_t', JSON.stringify(tickets)); }
 </script>
 
 </body>
