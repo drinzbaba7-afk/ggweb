@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Albanian Empire RP | Zyrtare</title>
+    <style>
+        :root {
+            --albanian-red: #ff0000;
+            --dark-bg: #0a0a0a;
+            --panel: #121212;
+            --text-main: #ffffff;
+            --text-dim: #a0a0a0;
+            --accent: #ff0000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header / Hero Section */
+        header {
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://i.imgur.com/8NBa8pW.png'); /* Mund ta ndërrosh me një foto të serverit */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-bottom: 3px solid var(--albanian-red);
+        }
+
+        .logo-text {
+            font-size: 4rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            text-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+        }
+
+        .sub-text {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            margin-bottom: 30px;
+        }
+
+        /* Butonat Kryesorë */
+        .btn-group {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 15px 35px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .btn-join {
+            background-color: var(--albanian-red);
+            color: white;
+        }
+
+        .btn-discord {
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+        }
+
+        /* Seksionet e Informacionit */
+        .container {
+            max-width: 1100px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--panel);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 4px solid var(--albanian-red);
+        }
+
+        .card h2 {
+            margin-bottom: 15px;
+            color: var(--albanian-red);
+        }
+
+        .card p, .card li {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+        }
+
+        .card ul {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .card li::before {
+            content: "• ";
+            color: var(--albanian-red);
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #444;
+            font-size: 0.8rem;
+            border-top: 1px solid #1a1a1a;
+        }
+
+        /* Status Indicator */
+        .status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(0, 255, 0, 0.1);
+            padding: 5px 15px;
+            border-radius: 20px;
+            color: #00ff00;
+            font-size: 0.8rem;
+            margin-bottom: 20px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            background: #00ff00;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #00ff00;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="status">
+            <div class="dot"></div> SERVERI ËSHTË ONLINE
+        </div>
+        <h1 class="logo-text">Albanian Empire</h1>
+        <p class="sub-text">Eksperienca më e lartë e Roleplay-it Shqiptar në FiveM</p>
+        
+        <div class="btn-group">
+            <a href="cfx.re/join/server_id" class="btn btn-join">Lidhu në Server</a>
+            <a href="https://discord.gg/ftesa" class="btn btn-discord">Bashkohu në Discord</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="grid">
+            <div class="card">
+                <h2>Rreth Serverit</h2>
+                <p>Mirëseerdhët në Albanian Empire Roleplay. Ne ofrojmë një ambient serioz dhe argëtues për të gjithë lojtarët shqiptarë. Me sisteme unike, ekonomi të balancuar dhe staf profesional, ne synojmë të jemi numri 1 në Ballkan.</p>
+            </div>
+
+            <div class="card">
+                <h2>Rregullat Bazë</h2>
+                <ul>
+                    <li>Respektimi i lojtarëve dhe stafit.</li>
+                    <li>Ndalon rreptësisht RDM dhe VDM.</li>
+                    <li>Duhet të keni një mikrofon funksional.</li>
+                    <li>Ndalon përdorimi i mod-eve apo hack-eve.</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2>Pse të zgjidhni "Empire"?</h2>
+                <p>Makina reale shqiptare, veshje të personalizuara, punë legale dhe ilegale me skripte të fundit. Serveri është i optimizuar për FPS maksimale.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 ALBANIAN EMPIRE ROLEPLAY. Të gjitha të drejtat e rezervuara.
+    </footer>
+
+</body>
+</html>
