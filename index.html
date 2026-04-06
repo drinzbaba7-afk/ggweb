@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Albanian Empire RP | Hub</title>
+    <title>Albanian Empire RP | Hub 🇦🇱</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;900&display=swap" rel="stylesheet">
     <style>
         :root { --red: #e60000; --bg: #0a0a0a; --card: #121212; --text: #fff; --gray: #888; }
@@ -12,31 +12,29 @@
         .hidden { display: none !important; }
         .container { max-width: 1000px; margin: auto; padding: 20px; }
         
-        /* Cards */
+        /* Cards & UI */
         .card { background: var(--card); border: 1px solid #222; padding: 25px; border-radius: 15px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         h1 { font-size: 2.5rem; font-weight: 900; text-align: center; text-transform: uppercase; margin-bottom: 20px; }
         h1 span { color: var(--red); }
 
-        /* Form Elements */
         input, textarea { width: 100%; padding: 12px; margin: 8px 0; background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 8px; outline: none; }
-        input:focus { border-color: var(--red); }
         .btn { padding: 12px 20px; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; text-transform: uppercase; }
         .btn-red { background: var(--red); color: #fff; width: 100%; }
         .btn-red:hover { background: #ff1a1a; }
-        .btn-small { padding: 5px 15px; font-size: 0.75rem; width: auto; }
+        .btn-small { padding: 5px 12px; font-size: 0.7rem; width: auto; margin-top: 5px; }
+        .btn-delete { background: #333; color: #ff4444; border: 1px solid #444; }
+        .btn-delete:hover { background: #ff4444; color: #fff; }
 
         /* Navigation */
         .nav-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0; }
-        .nav-item { background: var(--card); padding: 30px; border-radius: 12px; text-align: center; cursor: pointer; border: 1px solid #222; }
+        .nav-item { background: var(--card); padding: 30px; border-radius: 12px; text-align: center; cursor: pointer; border: 1px solid #222; transition: 0.3s; }
         .nav-item:hover { border-color: var(--red); transform: translateY(-3px); }
 
         /* Chat System */
-        .chat-box { background: #080808; padding: 15px; border-radius: 10px; max-height: 300px; overflow-y: auto; margin: 10px 0; border: 1px solid #222; }
-        .msg { margin-bottom: 10px; padding: 8px 12px; border-radius: 8px; font-size: 0.9rem; max-width: 80% }
-        .msg-user { background: #222; align-self: flex-start; }
-        .msg-staff { background: var(--red); color: white; margin-left: auto; }
-        .status-pill { font-size: 0.6rem; padding: 3px 8px; border-radius: 5px; text-transform: uppercase; font-weight: bold; }
-        .open { background: #00ff0022; color: #00ff00; }
+        .chat-box { background: #080808; padding: 15px; border-radius: 10px; max-height: 300px; overflow-y: auto; margin: 10px 0; border: 1px solid #222; display: flex; flex-direction: column; }
+        .msg { margin-bottom: 8px; padding: 10px 14px; border-radius: 12px; font-size: 0.85rem; max-width: 85%; line-height: 1.4; }
+        .msg-user { background: #222; align-self: flex-start; border-bottom-left-radius: 2px; }
+        .msg-staff { background: var(--red); color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
     </style>
 </head>
 <body>
@@ -49,21 +47,21 @@
             <h2 style="text-align: center;">Login</h2>
             <input type="text" id="l-user" placeholder="Username">
             <input type="password" id="l-pass" placeholder="Password">
-            <button class="btn btn-red" onclick="handleLogin()">Login</button>
-            <p onclick="toggleAuth()" style="text-align:center; font-size: 0.8rem; margin-top: 10px; color: var(--gray); cursor:pointer;">Krijo llogari</p>
+            <button class="btn btn-red" onclick="handleLogin()">Hyr</button>
+            <p onclick="toggleAuth()" style="text-align:center; font-size: 0.8rem; margin-top: 15px; color: var(--gray); cursor:pointer;">Krijo llogari të re</p>
         </div>
         <div id="reg-form" class="hidden">
-            <h2 style="text-align: center;">Register</h2>
+            <h2 style="text-align: center;">Regjistrohu</h2>
             <input type="text" id="r-user" placeholder="Username IC">
             <input type="password" id="r-pass" placeholder="Password">
-            <button class="btn btn-red" onclick="handleRegister()">Krijo</button>
-            <p onclick="toggleAuth()" style="text-align:center; font-size: 0.8rem; margin-top: 10px; color: var(--gray); cursor:pointer;">Ke llogari? Hyr</p>
+            <button class="btn btn-red" onclick="handleRegister()">Regjistrohu</button>
+            <p onclick="toggleAuth()" style="text-align:center; font-size: 0.8rem; margin-top: 15px; color: var(--gray); cursor:pointer;">Ke llogari? Hyr këtu</p>
         </div>
     </div>
 
     <div id="main-menu" class="hidden">
         <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h3>Përshëndetje, <span id="welcome-user" style="color:var(--red)"></span></h3>
+            <h3>🇦🇱 Mirësevjen, <span id="welcome-user" style="color:var(--red)"></span></h3>
             <button class="btn btn-red btn-small" onclick="location.reload()">Logout</button>
         </div>
         <div class="nav-grid">
@@ -76,8 +74,8 @@
     <div id="ticket-sec" class="hidden card">
         <button onclick="switchSec('main-menu')" class="btn btn-red btn-small">⬅️ MBRAPA</button>
         <h2 style="margin: 15px 0;">Sistemi i Tiketave 🎫</h2>
-        <input type="text" id="t-sub" placeholder="Subjekti...">
-        <textarea id="t-msg" placeholder="Shpjegoni problemin..."></textarea>
+        <input type="text" id="t-sub" placeholder="Subjekti i tiketës...">
+        <textarea id="t-msg" placeholder="Shpjegoni problemin në detaje..."></textarea>
         <button class="btn btn-red" onclick="createTicket()">Hap Tiketën</button>
         <div id="my-tickets-list" style="margin-top:20px;"></div>
     </div>
@@ -85,37 +83,40 @@
     <div id="suggest-sec" class="hidden card">
         <button onclick="switchSec('main-menu')" class="btn btn-red btn-small">⬅️ MBRAPA</button>
         <h2 style="margin: 15px 0;">Sugjerime Publike 💡</h2>
-        <textarea id="s-msg" placeholder="Shkruaj një sugjerim..."></textarea>
-        <button class="btn btn-red" onclick="postSuggest()">Posto</button>
-        <div id="public-suggests" style="margin-top:20px;"></div>
+        <p id="cooldown-msg" style="color: var(--red); font-size: 0.8rem;" class="hidden">⚠️ Mund të postoni vetëm 1 sugjerim në 24 orë.</p>
+        <textarea id="s-msg" placeholder="Shkruaj një sugjerim për serverin..."></textarea>
+        <button class="btn btn-red" id="s-btn" onclick="postSuggest()">Posto Sugjerimin</button>
+        <div id="public-suggests" style="margin-top:25px;"></div>
     </div>
 
     <div id="about-sec" class="hidden card">
         <button onclick="switchSec('main-menu')" class="btn btn-red btn-small">⬅️ MBRAPA</button>
-        <h2>Rregullat e Albanian Empire</h2>
-        <p style="margin-top:10px;">1. Respekto stafin dhe lojtarët.<br>2. Ndalohet PowerGaming & MetaGaming.<br>3. Shijo eksperiencën!</p>
+        <h2>Rregullat e Albanian Empire RP</h2>
+        <div style="margin-top:15px; color:#ccc;">
+            <p>1. Respekto çdo anëtar të stafit dhe lojtarët e tjerë.</p>
+            <p>2. Ndalohet MetaGaming, PowerGaming dhe VDM/RDM.</p>
+            <p>3. Çdo bug duhet raportuar menjëherë te tiketat.</p>
+        </div>
     </div>
 
-    <div id="admin-panel" class="hidden">
-        <div class="card">
-            <div style="display:flex; justify-content:space-between;">
-                <h2 style="color:var(--red)">STAFF PANEL 🛡️</h2>
-                <button class="btn btn-red btn-small" onclick="location.reload()">Logout</button>
-            </div>
-            <hr style="border:1px solid #222; margin:15px 0;">
-            
-            <h3>Tiketat e Lojtarëve</h3>
-            <div id="admin-tickets"></div>
-            
-            <h3 style="margin-top:30px;">Sugjerimet (Kthe Përgjigje)</h3>
-            <div id="admin-suggests"></div>
+    <div id="admin-panel" class="hidden card">
+        <div style="display:flex; justify-content:space-between;">
+            <h2 style="color:var(--red)">STAFF CONTROL PANEL 🛡️</h2>
+            <button class="btn btn-red btn-small" onclick="location.reload()">LOGOUT</button>
         </div>
+        <hr style="border:1px solid #222; margin:20px 0;">
+        
+        <h3>Tiketat Aktive</h3>
+        <div id="admin-tickets"></div>
+        
+        <h3 style="margin-top:40px;">Menaxhimi i Sugjerimeve</h3>
+        <div id="admin-suggests"></div>
     </div>
 </div>
 
 <script>
-    // Config
     const _wh = "aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTQ5MDgzNzA4ODQ0OTMzNTE2L3V2OEE3Y3FwNWRjQXFzX3l1cjJVeVR2WDFrdU9UQnA2dVNxbVVnLXNoT25Kb1lXQVFfNENnWEY2c3dsUW9ON215Nk9U";
+    
     let users = JSON.parse(localStorage.getItem('ae_u')) || [];
     let tickets = JSON.parse(localStorage.getItem('ae_t')) || [];
     let suggests = JSON.parse(localStorage.getItem('ae_s')) || [];
@@ -127,18 +128,19 @@
     }
 
     function handleRegister() {
-        const u = document.getElementById('r-user').value;
-        const p = document.getElementById('r-pass').value;
+        const u = document.getElementById('r-user').value.trim();
+        const p = document.getElementById('r-pass').value.trim();
         if(u && p) {
-            users.push({u, p});
+            if(users.find(x => x.u === u)) return alert("Ky emër ekziston!");
+            users.push({u, p, lastSuggest: 0});
             localStorage.setItem('ae_u', JSON.stringify(users));
-            alert("U krijua!"); toggleAuth();
+            alert("Llogaria u krijua me sukses!"); toggleAuth();
         }
     }
 
     function handleLogin() {
-        const u = document.getElementById('l-user').value;
-        const p = document.getElementById('l-pass').value;
+        const u = document.getElementById('l-user').value.trim();
+        const p = document.getElementById('l-pass').value.trim();
 
         if(u === 'albadmin' && p === 'albadminpanel') {
             session = {u: "ADMIN", role: 'admin'};
@@ -150,11 +152,11 @@
 
         const f = users.find(x => x.u === u && x.p === p);
         if(f) {
-            session = {u: f.u, role: 'user'};
+            session = f;
             document.getElementById('auth-area').classList.add('hidden');
             document.getElementById('main-menu').classList.remove('hidden');
             document.getElementById('welcome-user').innerText = f.u;
-        } else alert("Gabim!");
+        } else alert("Emri ose fjalëkalimi i gabuar!");
     }
 
     function switchSec(id) {
@@ -164,11 +166,11 @@
         if(id === 'suggest-sec') renderSuggests();
     }
 
-    // TICKET LOGIC
+    // TICKET SYSTEM
     function createTicket() {
         const sub = document.getElementById('t-sub').value;
         const msg = document.getElementById('t-msg').value;
-        if(!sub || !msg) return;
+        if(!sub || !msg) return alert("Plotëso fushat!");
 
         const t = { id: Date.now(), owner: session.u, sub, chat: [{u: session.u, m: msg}], status: 'OPEN' };
         tickets.push(t);
@@ -190,25 +192,31 @@
         list.innerHTML = "";
         tickets.filter(x => x.owner === session.u).reverse().forEach(t => {
             let chatHtml = t.chat.map(m => `<div class="msg ${m.u === 'STAFF' ? 'msg-staff' : 'msg-user'}"><b>${m.u}:</b> ${m.m}</div>`).join('');
-            list.innerHTML += `
-                <div class="card">
-                    <span class="status-pill open">${t.status}</span>
-                    <h4>${t.sub}</h4>
-                    <div class="chat-box">${chatHtml}</div>
-                    <div style="display:flex; gap:10px;">
-                        <input type="text" id="reply-input-${t.id}" placeholder="Shkruaj mesazh..." style="margin:0;">
-                        <button class="btn btn-red btn-small" onclick="replyTicket(${t.id})">Dërgo</button>
-                    </div>
-                </div>`;
+            list.innerHTML += `<div class="card"><h4>${t.sub}</h4><div class="chat-box">${chatHtml}</div><div style="display:flex; gap:10px;"><input type="text" id="reply-input-${t.id}" placeholder="Shkruaj..." style="margin:0;"><button class="btn btn-red btn-small" onclick="replyTicket(${t.id})">Dërgo</button></div></div>`;
         });
     }
 
-    // SUGGESTION LOGIC
+    // SUGGESTIONS SYSTEM (WITH 24H COOLDOWN)
     function postSuggest() {
-        const m = document.getElementById('s-msg').value;
+        const m = document.getElementById('s-msg').value.trim();
         if(!m) return;
+
+        const now = Date.now();
+        const userIdx = users.findIndex(x => x.u === session.u);
+        const lastPost = users[userIdx].lastSuggest || 0;
+
+        if (now - lastPost < 24 * 60 * 60 * 1000) {
+            document.getElementById('cooldown-msg').classList.remove('hidden');
+            return;
+        }
+
         suggests.push({id: Date.now(), u: session.u, m, reply: null});
+        users[userIdx].lastSuggest = now;
         localStorage.setItem('ae_s', JSON.stringify(suggests));
+        localStorage.setItem('ae_u', JSON.stringify(users));
+        
+        document.getElementById('s-msg').value = "";
+        document.getElementById('cooldown-msg').classList.add('hidden');
         renderSuggests();
     }
 
@@ -216,41 +224,23 @@
         const list = document.getElementById('public-suggests');
         list.innerHTML = "";
         suggests.slice().reverse().forEach(s => {
-            list.innerHTML += `<div class="card" style="border-left: 3px solid var(--red)">
-                <b>${s.u}:</b> ${s.m}
-                ${s.reply ? `<div style="color:var(--red); margin-top:10px;"><b>Staff:</b> ${s.reply}</div>` : ''}
-            </div>`;
+            list.innerHTML += `<div class="card" style="border-left: 3px solid var(--red)"><b>${s.u}:</b> ${s.m}${s.reply ? `<div style="color:var(--red); margin-top:8px; font-size:0.85rem;"><b>Përgjigja e Stafit:</b> ${s.reply}</div>` : ''}</div>`;
         });
     }
 
-    // ADMIN LOGIC
+    // ADMIN ACTIONS
     function renderAdmin() {
         const tList = document.getElementById('admin-tickets');
         tList.innerHTML = "";
         tickets.slice().reverse().forEach(t => {
             let chatHtml = t.chat.map(m => `<div class="msg ${m.u === 'STAFF' ? 'msg-staff' : 'msg-user'}"><b>${m.u}:</b> ${m.m}</div>`).join('');
-            tList.innerHTML += `
-                <div class="card">
-                    <p><b>Lojtari:</b> ${t.owner} | <b>Subjekti:</b> ${t.sub}</p>
-                    <div class="chat-box">${chatHtml}</div>
-                    <div style="display:flex; gap:10px;">
-                        <input type="text" id="reply-input-${t.id}" placeholder="Përgjigju lojtarit..." style="margin:0;">
-                        <button class="btn btn-red btn-small" onclick="replyTicket(${t.id}, true)">Dërgo</button>
-                    </div>
-                </div>`;
+            tList.innerHTML += `<div class="card"><p><b>${t.owner}</b>: ${t.sub}</p><div class="chat-box">${chatHtml}</div><div style="display:flex; gap:10px;"><input type="text" id="reply-input-${t.id}" placeholder="Përgjigju..." style="margin:0;"><button class="btn btn-red btn-small" onclick="replyTicket(${t.id}, true)">Dërgo</button></div></div>`;
         });
 
         const sList = document.getElementById('admin-suggests');
         sList.innerHTML = "";
         suggests.slice().reverse().forEach(s => {
-            sList.innerHTML += `
-                <div class="card">
-                    <p><b>${s.u}:</b> ${s.m}</p>
-                    <div style="display:flex; gap:10px;">
-                        <input type="text" id="s-rep-${s.id}" placeholder="Kthe përgjigje..." value="${s.reply || ''}" style="margin:0;">
-                        <button class="btn btn-red btn-small" onclick="replySuggest(${s.id})">Ruaj</button>
-                    </div>
-                </div>`;
+            sList.innerHTML += `<div class="card"><p><b>${s.u}:</b> ${s.m}</p><input type="text" id="s-rep-${s.id}" placeholder="Përgjigja..." value="${s.reply || ''}"><div style="display:flex; gap:10px;"><button class="btn btn-red btn-small" onclick="replySuggest(${s.id})">Ruaj Përgjigjen</button><button class="btn btn-small btn-delete" onclick="deleteSuggest(${s.id})">FSHIJ SUGJERIMIN</button></div></div>`;
         });
     }
 
@@ -260,6 +250,14 @@
         suggests[idx].reply = val;
         localStorage.setItem('ae_s', JSON.stringify(suggests));
         renderAdmin();
+    }
+
+    function deleteSuggest(id) {
+        if(confirm("A jeni i sigurt që doni ta fshini këtë sugjerim?")) {
+            suggests = suggests.filter(x => x.id !== id);
+            localStorage.setItem('ae_s', JSON.stringify(suggests));
+            renderAdmin();
+        }
     }
 
     function saveT() { localStorage.setItem('ae_t', JSON.stringify(tickets)); }
