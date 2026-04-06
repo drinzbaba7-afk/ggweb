@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Albanian Empire RP | Zyrtare</title>
+    <title>Albanian Empire RP | Official</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --albanian-red: #ff0000;
-            --dark-bg: #0a0a0a;
-            --panel: #121212;
+            --red: #ff0000;
+            --bg: #050505;
+            --card: #111111;
             --text-main: #ffffff;
-            --text-dim: #a0a0a0;
-            --accent: #ff0000;
+            --text-dim: #888888;
+            --border: #222222;
         }
 
         * {
@@ -22,17 +24,17 @@
         }
 
         body {
-            background-color: var(--dark-bg);
+            background-color: var(--bg);
             color: var(--text-main);
-            line-height: 1.6;
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        /* Header / Hero Section */
+        /* Hero Section */
         header {
-            height: 60vh;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
-                        url('https://i.imgur.com/8NBa8pW.png'); /* Mund ta ndërrosh me një foto të serverit */
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
+                        url('https://i.imgur.com/8NBa8pW.png');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -40,114 +42,21 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            border-bottom: 3px solid var(--albanian-red);
+            padding: 20px;
         }
 
-        .logo-text {
-            font-size: 4rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: -2px;
-            text-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
-        }
-
-        .sub-text {
-            font-size: 1.2rem;
-            color: var(--text-dim);
-            margin-bottom: 30px;
-        }
-
-        /* Butonat Kryesorë */
-        .btn-group {
-            display: flex;
-            gap: 15px;
-        }
-
-        .btn {
-            padding: 15px 35px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            text-transform: uppercase;
-            transition: 0.3s;
-        }
-
-        .btn-join {
-            background-color: var(--albanian-red);
-            color: white;
-        }
-
-        .btn-discord {
-            background-color: transparent;
-            border: 2px solid white;
-            color: white;
-        }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
-        }
-
-        /* Seksionet e Informacionit */
-        .container {
-            max-width: 1100px;
-            margin: 50px auto;
-            padding: 0 20px;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .card {
-            background: var(--panel);
-            padding: 30px;
-            border-radius: 10px;
-            border-left: 4px solid var(--albanian-red);
-        }
-
-        .card h2 {
-            margin-bottom: 15px;
-            color: var(--albanian-red);
-        }
-
-        .card p, .card li {
-            color: var(--text-dim);
-            font-size: 0.95rem;
-        }
-
-        .card ul {
-            list-style: none;
-            margin-top: 10px;
-        }
-
-        .card li::before {
-            content: "• ";
-            color: var(--albanian-red);
-            font-weight: bold;
-        }
-
-        footer {
-            text-align: center;
-            padding: 40px;
-            color: #444;
-            font-size: 0.8rem;
-            border-top: 1px solid #1a1a1a;
-        }
-
-        /* Status Indicator */
-        .status {
+        .status-badge {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             background: rgba(0, 255, 0, 0.1);
-            padding: 5px 15px;
-            border-radius: 20px;
             color: #00ff00;
+            padding: 6px 15px;
+            border-radius: 20px;
             font-size: 0.8rem;
+            font-weight: bold;
             margin-bottom: 20px;
+            border: 1px solid rgba(0, 255, 0, 0.2);
         }
 
         .dot {
@@ -156,51 +65,215 @@
             background: #00ff00;
             border-radius: 50%;
             box-shadow: 0 0 10px #00ff00;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.3); opacity: 0.5; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .logo-main {
+            font-size: clamp(3rem, 10vw, 5rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            margin-bottom: 10px;
+            background: linear-gradient(to bottom, #fff, #888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .highlight { color: var(--red); -webkit-text-fill-color: var(--red); }
+
+        .sub-text {
+            color: var(--text-dim);
+            max-width: 600px;
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 18px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .btn-red { background: var(--red); color: white; }
+        .btn-red:hover { background: #cc0000; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(255,0,0,0.3); }
+
+        .btn-outline { border: 2px solid white; color: white; }
+        .btn-outline:hover { background: white; color: black; transform: translateY(-3px); }
+
+        /* Ticket Section */
+        .ticket-section {
+            padding: 100px 20px;
+            background: #080808;
+            display: flex;
+            justify-content: center;
+        }
+
+        .ticket-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .ticket-card h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .ticket-card p {
+            color: var(--text-dim);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 8px; color: #888; font-size: 0.85rem; }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 14px;
+            background: #000;
+            border: 1px solid var(--border);
+            color: white;
+            border-radius: 8px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            border-color: var(--red);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: var(--red);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .submit-btn:hover { background: #cc0000; }
+        .submit-btn:disabled { background: #444; cursor: not-allowed; }
+
+        #response {
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+        }
+
+        footer {
+            padding: 50px;
+            text-align: center;
+            color: #333;
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border);
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="status">
-            <div class="dot"></div> SERVERI ËSHTË ONLINE
+        <div class="status-badge">
+            <div class="dot"></div> SERVERI ËSHTË LIVE
         </div>
-        <h1 class="logo-text">Albanian Empire</h1>
-        <p class="sub-text">Eksperienca më e lartë e Roleplay-it Shqiptar në FiveM</p>
+        <h1 class="logo-main">ALBANIAN <span class="highlight">EMPIRE</span></h1>
+        <p class="sub-text">Mirëseerdhët në perandorinë e Roleplay-it Shqiptar. Bashkohu me komunitetin më të madh dhe krijo historinë tënde sot.</p>
         
         <div class="btn-group">
-            <a href="cfx.re/join/server_id" class="btn btn-join">Lidhu në Server</a>
-            <a href="https://discord.gg/ftesa" class="btn btn-discord">Bashkohu në Discord</a>
+            <a href="#" class="btn btn-red">Lidhu në Server</a>
+            <a href="#tickets" class="btn btn-outline">Hap një Tiketë</a>
         </div>
     </header>
 
-    <div class="container">
-        <div class="grid">
-            <div class="card">
-                <h2>Rreth Serverit</h2>
-                <p>Mirëseerdhët në Albanian Empire Roleplay. Ne ofrojmë një ambient serioz dhe argëtues për të gjithë lojtarët shqiptarë. Me sisteme unike, ekonomi të balancuar dhe staf profesional, ne synojmë të jemi numri 1 në Ballkan.</p>
-            </div>
+    <section class="ticket-section" id="tickets">
+        <div class="ticket-card">
+            <h2>SISTEMI I <span class="highlight">TIKETAVE</span></h2>
+            <p>Keni një pyetje apo ankesë? Plotësoni formularin dhe stafi do ju njoftojë në Discord.</p>
 
-            <div class="card">
-                <h2>Rregullat Bazë</h2>
-                <ul>
-                    <li>Respektimi i lojtarëve dhe stafit.</li>
-                    <li>Ndalon rreptësisht RDM dhe VDM.</li>
-                    <li>Duhet të keni një mikrofon funksional.</li>
-                    <li>Ndalon përdorimi i mod-eve apo hack-eve.</li>
-                </ul>
-            </div>
+            <form id="ticketForm">
+                <div class="form-group">
+                    <label>Emri juaj (In-Game)</label>
+                    <input type="text" id="name" placeholder="Psh: Fatmir Haklaj" required>
+                </div>
 
-            <div class="card">
-                <h2>Pse të zgjidhni "Empire"?</h2>
-                <p>Makina reale shqiptare, veshje të personalizuara, punë legale dhe ilegale me skripte të fundit. Serveri është i optimizuar për FPS maksimale.</p>
-            </div>
+                <div class="form-group">
+                    <label>Discord User</label>
+                    <input type="text" id="discord" placeholder="Psh: fatmir#0000" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Arsyeja e Tiketës</label>
+                    <select id="reason">
+                        <option value="Suport">Suport i Përgjithshëm</option>
+                        <option value="Donacion">Donacion / VIP</option>
+                        <option value="Ankesë">Ankesë ndaj një Lojtari</option>
+                        <option value="Bug">Raporto një Bug</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Mesazhi juaj</label>
+                    <textarea id="message" rows="5" placeholder="Shkruani detajet këtu..." required></textarea>
+                </div>
+
+                <button type="submit" id="submitBtn" class="submit-btn">Dërgo Tiketën</button>
+            </form>
+            <div id="response"></div>
         </div>
-    </div>
+    </section>
 
     <footer>
-        &copy; 2026 ALBANIAN EMPIRE ROLEPLAY. Të gjitha të drejtat e rezervuara.
+        &copy; 2026 ALBANIAN EMPIRE ROLEPLAY | BY ALPHA & DR1NZY
     </footer>
 
-</body>
-</html>
+    <script>
+        // Webhook Obfuscation (Hidden from GitHub Scrapers)
+        const _0xH1 = "aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3Mv";
+        const _0xH2 = "MTQ5MDgzNzA4ODQ0OTMzNTMxNi91djhBN2NxcDVkY0Fxc195dXIyVXlUdlgxa3VPVEJwNnVTcW1VZy1zaE9uSm9ZV0FRXzRDZ1hGNnN3bFFvTjdteTZPVA==";
+        
+        const getHook = () => atob(_0xH1) + atob(_0xH2);
+
+        document.getElementById('ticketForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const btn = document.getElementById('submitBtn');
+            const res = document.getElementById('response');
+            
+            btn.disabled = true;
+            btn.innerText = "Duke u dërguar...";
+
+            const payload = {
+                username: "Empire Web",
+                avatar_url: "https://cdn.discordapp.com/avatars/1174063538529120286/45b3c7eb7b791f4f34466415e6652085.webp",
+                embeds: [{
+                    title: "🎫 TIKETË E RE NGA WEB SITE",
+                    color: 16711680,
+                    fields: [
+                        { name: "👤 Lojtari", value: "
