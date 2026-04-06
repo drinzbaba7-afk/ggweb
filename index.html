@@ -3,236 +3,238 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Albanian Empire RP | Official Website</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <title>Albanian Empire RP | Portal Premium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #e60000;
-            --bg: #050505;
-            --card-bg: #111111;
-            --text: #ffffff;
-            --accent: #ffcc00;
-            --glass: rgba(255, 255, 255, 0.05);
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
-
-        /* Navigation */
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 10%; background: rgba(0,0,0,0.8); backdrop-filter: blur(10px); position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid var(--glass); }
-        .logo { font-size: 1.5rem; font-weight: 900; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; }
-        .nav-links a { color: white; text-decoration: none; margin-left: 20px; font-size: 0.9rem; font-weight: 600; transition: 0.3s; }
-        .nav-links a:hover { color: var(--primary); }
-
-        /* Hero Section */
-        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://i.imgur.com/8Qp2Z5W.jpg'); background-size: cover; background-position: center; padding: 0 20px; }
-        .hero h1 { font-size: 4rem; font-weight: 900; text-transform: uppercase; margin-bottom: 10px; animation: fadeInUp 1s; }
-        .hero p { font-size: 1.2rem; color: #ccc; max-width: 700px; margin-bottom: 30px; animation: fadeInUp 1.2s; }
-        .btn-group { display: flex; gap: 15px; animation: fadeInUp 1.4s; }
-        .btn { padding: 15px 35px; border-radius: 5px; font-weight: bold; text-decoration: none; text-transform: uppercase; transition: 0.3s; cursor: pointer; border: none; }
-        .btn-primary { background: var(--primary); color: white; }
-        .btn-primary:hover { background: #ff1a1a; box-shadow: 0 0 20px rgba(230, 0, 0, 0.4); transform: translateY(-3px); }
-        .btn-outline { border: 2px solid white; color: white; background: transparent; }
-        .btn-outline:hover { background: white; color: black; }
-
-        /* Features Section */
-        .features { padding: 100px 10%; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
-        .feat-card { background: var(--card-bg); padding: 40px; border-radius: 15px; border-bottom: 4px solid var(--primary); transition: 0.3s; }
-        .feat-card:hover { transform: translateY(-10px); background: #1a1a1a; }
-        .feat-card h3 { color: var(--accent); margin-bottom: 15px; }
-
-        /* Portal Section */
-        .portal-section { padding: 100px 10%; background: #080808; }
-        .card { background: var(--card-bg); padding: 40px; border-radius: 20px; max-width: 600px; margin: auto; border: 1px solid var(--glass); }
-        .hidden { display: none; }
+        :root { --red: #e60000; --bg: #080808; --card: #121212; --text: #fff; --glass: rgba(255,255,255,0.03); }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background: var(--bg); color: var(--text); overflow-x: hidden; }
         
-        input, textarea { width: 100%; padding: 15px; margin: 10px 0; background: #1a1a1a; border: 1px solid #333; color: white; border-radius: 8px; font-family: inherit; }
-        .ticket-item { background: #181818; padding: 20px; border-radius: 10px; margin-top: 15px; border-left: 4px solid var(--primary); }
+        /* UI Components */
+        .container { max-width: 1100px; margin: auto; padding: 20px; }
+        .hidden { display: none !important; }
+        .card { background: var(--card); border: 1px solid #222; padding: 40px; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.6); position: relative; overflow: hidden; }
+        .card::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: var(--red); }
         
-        /* Status Tags */
-        .status { font-size: 0.7rem; padding: 3px 10px; border-radius: 20px; text-transform: uppercase; font-weight: bold; }
-        .open { background: rgba(0, 255, 0, 0.1); color: #00ff00; }
-        .closed { background: rgba(255, 255, 255, 0.1); color: #aaa; }
+        h1, h2 { text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; text-align: center; }
+        h1 span { color: var(--red); }
 
-        /* Animations */
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        input { width: 100%; padding: 14px; margin: 8px 0; background: #1a1a1a; border: 1px solid #333; color: #fff; border-radius: 8px; outline: none; transition: 0.3s; }
+        input:focus { border-color: var(--red); background: #222; }
+        
+        .btn { width: 100%; padding: 15px; border: none; border-radius: 8px; font-weight: 800; cursor: pointer; transition: 0.3s; text-transform: uppercase; margin-top: 10px; }
+        .btn-red { background: var(--red); color: #fff; }
+        .btn-red:hover { background: #ff1a1a; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(230,0,0,0.3); }
+        .btn-link { background: none; color: #888; font-size: 0.85rem; text-decoration: underline; }
 
-        footer { text-align: center; padding: 40px; color: #555; font-size: 0.8rem; border-top: 1px solid var(--glass); }
+        /* Dashboard Styles */
+        .nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; padding-bottom: 15px; border-bottom: 1px solid #222; }
+        .ticket-box { background: #181818; padding: 20px; border-radius: 12px; margin-bottom: 15px; border-left: 4px solid #333; transition: 0.3s; }
+        .ticket-box:hover { border-left-color: var(--red); background: #202020; }
+        .status-pill { font-size: 0.65rem; padding: 4px 10px; border-radius: 50px; font-weight: bold; float: right; }
+        .status-open { background: rgba(0,255,0,0.1); color: #00ff00; }
+        .status-closed { background: rgba(255,255,255,0.05); color: #888; }
     </style>
 </head>
 <body>
 
-<nav>
-    <div class="logo">Albanian Empire</div>
-    <div class="nav-links">
-        <a href="#">KREU</a>
-        <a href="#features">FEATURES</a>
-        <a href="#portal">SUPPORT</a>
-    </div>
-</nav>
+<div class="container" style="margin-top: 50px;">
+    <h1>ALBANIAN <span>EMPIRE</span></h1>
 
-<section class="hero">
-    <h1>Eksperienca Supreme RP</h1>
-    <p>Bashkohu me serverin më të fuqishëm Shqiptar në FiveM. Ekonomi reale, makina moded dhe evente çdo natë.</p>
-    <div class="btn-group">
-        <a href="fivem://connect/IP_JUAJ" class="btn btn-primary">LUAJ TANI 🏎️</a>
-        <a href="#portal" class="btn btn-outline">HAP TIKETË 🎫</a>
-    </div>
-</section>
-
-<section class="features" id="features">
-    <div class="feat-card">
-        <h3>🚔 Policia & Emergjenca</h3>
-        <p>Sistemi më i avancuar i policisë me gradat reale dhe trajnime profesionale.</p>
-    </div>
-    <div class="feat-card">
-        <h3>💰 Ekonomi Reale</h3>
-        <p>Bëj biznes, blej shtëpi dhe makina luksoze. Çdo cent vlen në Albanian Empire.</p>
-    </div>
-    <div class="feat-card">
-        <h3>🏴‍☠️ Bandat & Mafiet</h3>
-        <p>Krijo perandorinë tënde kriminale me sisteme të dedikuara për gang-war dhe droge.</p>
-    </div>
-</section>
-
-<section class="portal-section" id="portal">
-    <div id="login-area" class="card">
-        <h2 style="text-align: center; margin-bottom: 20px;">Lobby i Lojtarit</h2>
-        <input type="text" id="username-input" placeholder="Emri në lojë ose Admin Code...">
-        <button class="btn btn-primary" style="width: 100%" onclick="handleLogin()">HYR NË SISTEM</button>
-    </div>
-
-    <div id="player-view" class="card hidden">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-            <h3 id="user-display"></h3>
-            <button onclick="location.reload()" style="background:none; border:none; color:red; cursor:pointer;">Dil</button>
+    <div id="auth-section" class="card" style="max-width: 450px; margin: auto;">
+        <div id="login-form">
+            <h2>Login</h2>
+            <input type="text" id="l-user" placeholder="Username / Email">
+            <input type="password" id="l-pass" placeholder="Password">
+            <button class="btn btn-red" onclick="handleLogin()">Hyr</button>
+            <button class="btn btn-link" onclick="toggleAuth()">Nuk ke llogari? Regjistrohu</button>
         </div>
-        <div style="border-bottom: 1px solid #333; margin-bottom: 20px; padding-bottom: 20px;">
-            <h4>Krijo Tiketë</h4>
-            <input type="text" id="t-subject" placeholder="Subjekti...">
-            <textarea id="t-msg" rows="3" placeholder="Përshkruaj nevojën tuaj..."></textarea>
-            <button class="btn btn-primary" style="width: 100%" onclick="submitTicket()">DËRGO</button>
+
+        <div id="register-form" class="hidden">
+            <h2>Regjistrohu</h2>
+            <input type="text" id="r-email" placeholder="Email Adresa">
+            <input type="text" id="r-user" placeholder="Username IC">
+            <input type="password" id="r-pass" placeholder="Password">
+            <button class="btn btn-red" onclick="handleRegister()">Krijo Llogarinë</button>
+            <button class="btn btn-link" onclick="toggleAuth()">Ke llogari? Hyr këtu</button>
         </div>
-        <h4>Historiku Juaj</h4>
-        <div id="player-tickets-list"></div>
     </div>
 
-    <div id="admin-view" class="card hidden" style="max-width: 900px;">
-        <h2 style="color: var(--primary); text-align: center;">PANELI I KONTROLLIT 🛡️</h2>
+    <div id="player-panel" class="hidden card">
+        <div class="nav">
+            <div>Mirësevjen, <b id="display-name" style="color:var(--red)"></b></div>
+            <button onclick="logout()" class="btn btn-link" style="width:auto; text-decoration:none; color:red;">[ Dil ]</button>
+        </div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+            <div>
+                <h3>Hap Tiketë të re 🎫</h3>
+                <input type="text" id="t-sub" placeholder="Subjekti (p.sh. Problemi me gradën)">
+                <textarea id="t-msg" style="width:100%; height:100px; background:#1a1a1a; border:1px solid #333; color:white; padding:10px; border-radius:8px; margin:10px 0;" placeholder="Shpjegoni arsyen..."></textarea>
+                <button class="btn btn-red" onclick="sendTicket()">Dërgo te Staffi</button>
+            </div>
+            <div>
+                <h3>Tiketat e mia</h3>
+                <div id="my-tickets-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="admin-panel" class="hidden card">
+        <div class="nav">
+            <h2 style="margin:0; color:var(--red)">STAFF CONTROL 🛡️</h2>
+            <button onclick="logout()" class="btn btn-link" style="width:auto; color:red;">LOGOUT</button>
+        </div>
         <div id="admin-master-list"></div>
-    </section>
-</section>
-
-<footer>
-    &copy; 2026 Albanian Empire Roleplay. Të gjitha të drejtat të rezervuara. <br>
-    Developed by Zo for Alpha 🇦🇱
-</footer>
+    </div>
+</div>
 
 <script>
-    // Webhook i fshehur (Base64)
-    const _secret = "aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTQ5MDgzNzA4ODQ0OTMzNTE2L3V2OEE3Y3FwNWRjQXFzX3l1cjJVeVR2WDFrdU9UQnA2dVNxbVVnLXNoT25Kb1lXQVFfNENnWEY2c3dsUW9ON215Nk9U";
-    const hook = () => atob(_secret);
+    // Hidden Webhook
+    const _wh = "aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTQ5MDgzNzA4ODQ0OTMzNTE2L3V2OEE3Y3FwNWRjQXFzX3l1cjJVeVR2WDFrdU9UQnA2dVNxbVVnLXNoT25Kb1lXQVFfNENnWEY2c3dsUW9ON215Nk9U";
+    
+    // Data Management
+    let users = JSON.parse(localStorage.getItem('ae_users')) || [];
+    let tickets = JSON.parse(localStorage.getItem('ae_tickets')) || [];
+    let session = null;
 
-    let user = "";
-    let tickets = JSON.parse(localStorage.getItem('ae_data')) || [];
+    function toggleAuth() {
+        document.getElementById('login-form').classList.toggle('hidden');
+        document.getElementById('register-form').classList.toggle('hidden');
+    }
+
+    function handleRegister() {
+        const email = document.getElementById('r-email').value;
+        const user = document.getElementById('r-user').value;
+        const pass = document.getElementById('r-pass').value;
+
+        if(!email || !user || !pass) return alert("Plotëso të gjitha fushat!");
+        if(users.find(u => u.username === user)) return alert("Ky username ekziston!");
+
+        users.push({ email, username: user, password: pass });
+        localStorage.setItem('ae_users', JSON.stringify(users));
+        alert("Llogaria u krijua! Tani mund të hyni.");
+        toggleAuth();
+    }
 
     function handleLogin() {
-        const val = document.getElementById('username-input').value.trim();
-        if(!val) return;
+        const userIn = document.getElementById('l-user').value;
+        const passIn = document.getElementById('l-pass').value;
 
-        user = val;
-        document.getElementById('login-area').classList.add('hidden');
+        // Admin Override
+        if(userIn === 'albadmin' && passIn === 'albadminpanel') {
+            session = { username: "ADMIN", role: "admin" };
+            loadAdmin();
+            return;
+        }
 
-        if(val === 'albempireadminpanel') {
-            document.getElementById('admin-view').classList.remove('hidden');
-            renderAdmin();
+        const found = users.find(u => (u.username === userIn || u.email === userIn) && u.password === passIn);
+        if(found) {
+            session = { username: found.username, role: "user" };
+            loadUser();
         } else {
-            document.getElementById('player-view').classList.remove('hidden');
-            document.getElementById('user-display').innerText = "User: " + val;
-            renderPlayer();
+            alert("Kredencialet e gabuara!");
         }
     }
 
-    async function submitTicket() {
-        const sub = document.getElementById('t-subject').value;
-        const msg = document.getElementById('t-msg').value;
-        if(!sub || !msg) return alert("Plotëso fushat!");
+    function loadUser() {
+        document.getElementById('auth-section').classList.add('hidden');
+        document.getElementById('player-panel').classList.remove('hidden');
+        document.getElementById('display-name').innerText = session.username;
+        renderUserTickets();
+    }
 
-        const t = {
+    function loadAdmin() {
+        document.getElementById('auth-section').classList.add('hidden');
+        document.getElementById('admin-panel').classList.remove('hidden');
+        renderAdminTickets();
+    }
+
+    function logout() { location.reload(); }
+
+    async function sendTicket() {
+        const sub = document.getElementById('t-sub').value;
+        const msg = document.getElementById('t-msg').value;
+        if(!sub || !msg) return alert("Shkruaj subjektin dhe mesazhin!");
+
+        const newT = {
             id: Date.now(),
-            owner: user,
+            owner: session.username,
             subject: sub,
-            text: msg,
-            status: 'OPEN',
+            message: msg,
+            status: "E Hapur",
             reply: null
         };
 
-        tickets.push(t);
-        localStorage.setItem('ae_data', JSON.stringify(tickets));
+        tickets.push(newT);
+        localStorage.setItem('ae_tickets', JSON.stringify(tickets));
         
         // Discord Webhook
-        await fetch(hook(), {
+        await fetch(atob(_wh), {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 embeds: [{
-                    title: "🚀 TIKETË E RE: " + sub,
+                    title: "🎫 TIKETË E RE NGA " + session.username,
                     color: 15105536,
-                    description: `**Lojtari:** ${user}\n**Mesazhi:** ${msg}`,
-                    timestamp: new Date()
+                    fields: [
+                        {name: "Subjekti", value: sub},
+                        {name: "Mesazhi", value: msg}
+                    ]
                 }]
             })
         });
 
-        renderPlayer();
-        document.getElementById('t-subject').value = "";
+        renderUserTickets();
+        document.getElementById('t-sub').value = "";
         document.getElementById('t-msg').value = "";
     }
 
-    function renderPlayer() {
-        const list = document.getElementById('player-tickets-list');
-        list.innerHTML = "";
-        tickets.filter(x => x.owner === user).forEach(t => {
-            list.innerHTML += `
-                <div class="ticket-item">
-                    <span class="status ${t.status.toLowerCase()}">${t.status}</span>
-                    <strong>${t.subject}</strong>
-                    <p style="font-size:0.85rem; color:#888; margin-top:5px;">${t.text}</p>
-                    ${t.reply ? `<div style="color:var(--accent); margin-top:10px; font-size:0.85rem;"><b>Staff:</b> ${t.reply}</div>` : ""}
+    function renderUserTickets() {
+        const div = document.getElementById('my-tickets-list');
+        div.innerHTML = "";
+        tickets.filter(t => t.owner === session.username).forEach(t => {
+            div.innerHTML += `
+                <div class="ticket-box">
+                    <span class="status-pill ${t.status === 'E Hapur' ? 'status-open' : 'status-closed'}">${t.status}</span>
+                    <b>${t.subject}</b>
+                    <p style="font-size:0.8rem; color:#aaa; margin-top:5px;">${t.message}</p>
+                    ${t.reply ? `<div style="color:var(--red); font-size:0.8rem; margin-top:10px;"><b>Staff:</b> ${t.reply}</div>` : ""}
                 </div>
             `;
         });
     }
 
-    function renderAdmin() {
-        const list = document.getElementById('admin-master-list');
-        list.innerHTML = "";
+    function renderAdminTickets() {
+        const div = document.getElementById('admin-master-list');
+        div.innerHTML = "";
         tickets.forEach(t => {
-            list.innerHTML += `
-                <div class="ticket-item" style="border-left-color: ${t.status === 'OPEN' ? 'green' : '#444'}">
-                    <p><b>Nga:</b> ${t.owner} | <b>Subjekti:</b> ${t.subject}</p>
-                    <p>${t.text}</p>
-                    <input type="text" id="rep-${t.id}" placeholder="Kthe përgjigje..." value="${t.reply || ''}">
-                    <button class="btn btn-primary" style="padding:5px 15px; font-size:0.7rem;" onclick="adminReply(${t.id})">RUAJ</button>
-                    <button onclick="delT(${t.id})" style="background:none; border:none; color:grey; cursor:pointer; margin-left:10px;">Fshij</button>
+            div.innerHTML += `
+                <div class="ticket-box">
+                    <p><b>Lojtari:</b> ${t.owner} | <b>Subjekti:</b> ${t.subject}</p>
+                    <p style="font-size:0.9rem; margin:10px 0;">${t.message}</p>
+                    <div style="display:flex; gap:10px;">
+                        <input type="text" id="ans-${t.id}" placeholder="Përgjigja..." value="${t.reply || ''}" style="margin:0; padding:8px;">
+                        <button class="btn btn-red" style="margin:0; width:auto; padding:5px 20px;" onclick="adminReply(${t.id})">Kthe Përgjigje</button>
+                        <button onclick="deleteTicket(${t.id})" style="background:none; border:none; color:#555; cursor:pointer;">Fshij</button>
+                    </div>
                 </div>
             `;
         });
     }
 
     function adminReply(id) {
-        const r = document.getElementById('rep-' + id).value;
-        const i = tickets.findIndex(x => x.id === id);
-        tickets[i].reply = r;
-        tickets[i].status = "CLOSED";
-        localStorage.setItem('ae_data', JSON.stringify(tickets));
-        renderAdmin();
+        const replyText = document.getElementById('ans-' + id).value;
+        const idx = tickets.findIndex(t => t.id === id);
+        tickets[idx].reply = replyText;
+        tickets[idx].status = "E Mbyllur";
+        localStorage.setItem('ae_tickets', JSON.stringify(tickets));
+        renderAdminTickets();
     }
 
-    function delT(id) {
-        tickets = tickets.filter(x => x.id !== id);
-        localStorage.setItem('ae_data', JSON.stringify(tickets));
-        renderAdmin();
+    function deleteTicket(id) {
+        tickets = tickets.filter(t => t.id !== id);
+        localStorage.setItem('ae_tickets', JSON.stringify(tickets));
+        renderAdminTickets();
     }
 </script>
 
