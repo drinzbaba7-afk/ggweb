@@ -6,48 +6,45 @@
     <title>Albanian Empire RP | Official Portal</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-        :root { --red: #ff0000; --red-glow: rgba(255, 0, 0, 0.5); --bg: #030303; --card: #0a0a0a; --text: #ffffff; }
+        :root { --red: #ff0000; --bg: #030303; --card: #0a0a0a; --text: #ffffff; }
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
-        body { background: var(--bg); color: var(--text); overflow-x: hidden; scroll-behavior: smooth; }
+        body { background: var(--bg); color: var(--text); overflow-x: hidden; }
         .hidden { display: none !important; }
         .container { max-width: 1200px; margin: auto; padding: 0 20px; }
         
+        /* UI Elements */
         .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 24px; padding: 40px; }
         .animate { animation: fadeIn 0.6s ease-out forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Hero */
-        .hero { height: 70vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: radial-gradient(circle at 50% 50%, #1a0000 0%, #030303 100%); }
-        .hero h1 { font-size: clamp(3rem, 8vw, 5rem); font-weight: 800; text-transform: uppercase; letter-spacing: -2px; }
-        .hero h1 span { color: var(--red); text-shadow: 0 0 30px var(--red-glow); }
+        /* Navigation Cards */
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 30px 0; }
+        .info-card { background: var(--card); padding: 25px; border-radius: 18px; border: 1px solid #1a1a1a; transition: 0.3s; text-align: center; cursor: pointer; }
+        .info-card:hover { border-color: var(--red); transform: translateY(-5px); }
+        .info-card i { font-size: 1.8rem; color: var(--red); margin-bottom: 12px; display: block; }
+        .info-card h3 { font-size: 0.9rem; text-transform: uppercase; margin-bottom: 5px; }
+        .info-card p { font-size: 0.7rem; color: #666; }
 
-        /* Grid System */
-        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin: 40px 0; }
-        .info-card { background: var(--card); padding: 30px; border-radius: 20px; border: 1px solid #1a1a1a; transition: 0.3s; text-align: center; cursor: pointer; }
-        .info-card:hover { border-color: var(--red); transform: translateY(-5px); background: #0d0d0d; }
-        .info-card i { font-size: 2rem; color: var(--red); margin-bottom: 15px; display: block; }
-        .info-card h3 { font-size: 1.1rem; text-transform: uppercase; margin-bottom: 8px; }
-        .info-card p { font-size: 0.75rem; color: #666; }
-
-        /* Rules & Content */
+        /* Rules */
         .rules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
         .rule-box { background: rgba(255,255,255,0.01); padding: 20px; border-radius: 15px; border-left: 3px solid var(--red); }
         .rule-box h4 { color: var(--red); font-size: 0.8rem; margin-bottom: 10px; text-transform: uppercase; }
-        .rule-box ul { list-style: none; color: #aaa; font-size: 0.8rem; }
+        .rule-box ul { list-style: none; color: #aaa; font-size: 0.8rem; line-height: 1.4; }
 
         .btn { padding: 14px 28px; border-radius: 12px; font-weight: 700; cursor: pointer; transition: 0.3s; border: none; text-transform: uppercase; font-size: 0.8rem; }
         .btn-main { background: var(--red); color: white; }
+        .btn-main:disabled { background: #333; cursor: not-allowed; }
         
         input, textarea { width: 100%; padding: 15px; background: #0d0d0d; border: 1px solid #1a1a1a; color: white; border-radius: 12px; margin-bottom: 15px; outline: none; }
+        .chat-msg { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; margin-bottom: 8px; font-size: 0.85rem; }
     </style>
 </head>
 <body>
 
 <div id="landing-page">
-    <section class="hero animate">
-        <h1>ALBANIAN <span>EMPIRE</span></h1>
-        <p style="color: #666; margin: 20px 0;">Zgjidh rrugën tënde në perandorinë tonë.</p>
-        <button class="btn btn-main" onclick="document.getElementById('auth-anchor').scrollIntoView({behavior:'smooth'})">FILLONI KËTU</button>
+    <section style="height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+        <h1 style="font-size: 4rem; font-weight: 800;">ALBANIAN <span style="color:var(--red)">EMPIRE</span></h1>
+        <button class="btn btn-main" style="margin-top: 20px;" onclick="document.getElementById('auth-anchor').scrollIntoView({behavior:'smooth'})">HYR NË PORTAL</button>
     </section>
 
     <div class="container animate" id="auth-anchor" style="padding-bottom: 100px;">
@@ -57,13 +54,13 @@
                 <input type="text" id="l-user" placeholder="Username">
                 <input type="password" id="l-pass" placeholder="Password">
                 <button class="btn btn-main" style="width: 100%;" onclick="handleLogin()">HYR</button>
-                <p onclick="toggleAuth()" style="text-align:center; color:#444; margin-top:15px; cursor:pointer; font-size:0.75rem;">Regjistro llogari</p>
+                <p onclick="toggleAuth()" style="text-align:center; color:#444; margin-top:15px; cursor:pointer; font-size:0.75rem;">Regjistrohu</p>
             </div>
             <div id="reg-form" class="hidden">
                 <h2 style="text-align: center; margin-bottom: 25px;">REGJISTRIMI</h2>
                 <input type="text" id="r-user" placeholder="Username">
                 <input type="password" id="r-pass" placeholder="Password">
-                <button class="btn btn-main" style="width: 100%;" onclick="handleRegister()">KRIJO LLOGARINË</button>
+                <button class="btn btn-main" style="width: 100%;" onclick="handleRegister()">KRIJO LLOGARI</button>
                 <p onclick="toggleAuth()" style="text-align:center; color:#444; margin-top:15px; cursor:pointer; font-size:0.75rem;">Ke llogari? Kyçu</p>
             </div>
         </div>
@@ -71,16 +68,13 @@
 </div>
 
 <div id="main-hub" class="hidden container animate" style="padding-top: 60px;">
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;">
-        <div>
-            <h4 style="color: #444; font-size: 0.7rem; text-transform: uppercase;">Mirësevjen në Perandori</h4>
-            <h2 id="welcome-user" style="text-transform: uppercase;"></h2>
-        </div>
-        <button class="btn" style="background: #111; color: var(--red); padding: 8px 20px;" onclick="location.reload()">LOGOUT</button>
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+        <h2 id="welcome-user" style="text-transform: uppercase;"></h2>
+        <button class="btn" style="background: #111; color: var(--red);" onclick="location.reload()">LOGOUT</button>
     </div>
 
     <div class="info-grid">
-        <div class="info-card" onclick="openSection('about-server-sec')"><i>🏛️</i><h3>RRETH SERVERIT</h3><p>Sistemet tona unike.</p></div>
+        <div class="info-card" onclick="openSection('about-server-sec')"><i>🏛️</i><h3>RRETH SERVERIT</h3><p>Info mbi Empire RP.</p></div>
         <div class="info-card" onclick="openSection('staff-sec')"><i>👑</i><h3>STAFF TEAM</h3><p>Ekipi drejtues.</p></div>
         <div class="info-card" onclick="openSection('about-sec')"><i>⚖️</i><h3>RREGULLORJA</h3><p>Rregullat zyrtare.</p></div>
         <div class="info-card" onclick="openSection('ticket-sec')"><i>🎫</i><h3>SUPPORT</h3><p>Ndihmë nga stafi.</p></div>
@@ -91,52 +85,44 @@
 <div id="content-area" class="container hidden animate" style="padding-bottom: 100px;">
     
     <section id="about-server-sec" class="hidden glass">
-        <button class="btn" style="background:#111; color:white; margin-bottom:25px;" onclick="closeSection()">⬅️ MBRAPA</button>
-        <h2 style="margin-bottom: 30px;">RRETH EMPIRE RP 🏛️</h2>
-        <div class="info-grid" style="margin: 0;">
-            <div class="info-card"><i>🏙️</i><h4>Ekonomi</h4><p>Sistem ekonomik i balancuar dhe realist.</p></div>
-            <div class="info-card"><i>🚓</i><h4>Drejtësia</h4><p>Policia dhe gjyqësori me sisteme moderne.</p></div>
-            <div class="info-card"><i>🏎️</i><h4>Automjete</h4><p>Mbi 300 makina të modifikuara dhe unike.</p></div>
-            <div class="info-card"><i>💼</i><h4>Biznese</h4><p>Mundësi për të menaxhuar biznesin tuaj.</p></div>
-        </div>
-    </section>
-
-    <section id="staff-sec" class="hidden glass">
-        <button class="btn" style="background:#111; color:white; margin-bottom:25px;" onclick="closeSection()">⬅️ MBRAPA</button>
-        <h2 style="margin-bottom: 30px;">STAFF TEAM 🛡️</h2>
-        <div class="info-grid" style="margin:0;">
-            <div class="info-card"><img src="https://cdn.discordapp.com/avatars/1231577819746926703/a_04a60086a9b90d531dedb42b777af0b3.gif?size=1024" style="width:60px; border-radius:50%; border:2px solid var(--red); margin-bottom:10px;"><h4>p8h3</h4><p>Founder</p></div>
-            <div class="info-card"><img src="https://cdn.discordapp.com/avatars/1264598611791183997/630c1f74b7029e0889e4eebf32f1a4fd.webp?size=1024" style="width:60px; border-radius:50%; border:2px solid var(--red); margin-bottom:10px;"><h4>jackknwt</h4><p>Founder</p></div>
-            <div class="info-card"><img src="https://cdn.discordapp.com/avatars/1362077776424730627/72a61561e0d28513afdbcdedc1f9646f.webp?size=1024" style="width:60px; border-radius:50%; border:2px solid var(--red); margin-bottom:10px;"><h4>dr1nzy06</h4><p>Head Dev</p></div>
-            <div class="info-card"><img src="https://cdn.discordapp.com/avatars/1143993567635837051/d1a0a308cea68909cbd33596db97ebd2.webp?size=1024" style="width:60px; border-radius:50%; border:2px solid var(--red); margin-bottom:10px;"><h4>iblisthedevil</h4><p>Head Dev</p></div>
+        <button class="btn" style="background:#111; color:white; margin-bottom:20px;" onclick="closeSection()">⬅️ MBRAPA</button>
+        <h2>RRETH SERVERIT 🏛️</h2>
+        <div class="info-grid">
+            <div class="info-card"><i>🏙️</i><h4>EKONOMI</h4><p>Sistem i balancuar.</p></div>
+            <div class="info-card"><i>🚓</i><h4>POLICIA</h4><p>Sisteme moderne MDT.</p></div>
+            <div class="info-card"><i>🏎️</i><h4>MAKINAT</h4><p>300+ Importe.</p></div>
         </div>
     </section>
 
     <section id="about-sec" class="hidden glass">
-        <button class="btn" style="background:#111; color:white; margin-bottom:25px;" onclick="closeSection()">⬅️ MBRAPA</button>
-        <h2 style="margin-bottom: 25px;">OFFICIAL RULES ⚖️</h2>
+        <button class="btn" style="background:#111; color:white; margin-bottom:20px;" onclick="closeSection()">⬅️ MBRAPA</button>
+        <h2 style="margin-bottom: 20px;">OFFICIAL RULES ⚖️</h2>
         <div class="rules-grid">
-            <div class="rule-box"><h4>RDM/VDM</h4><ul><li>Pa vrasje/goditje pa arsye RP.</li></ul></div>
-            <div class="rule-box"><h4>META/POWER</h4><ul><li>Mos përdor info jashtë loje.</li></ul></div>
-            <div class="rule-box"><h4>KRIMI</h4><ul><li>Maks 2-3 veta në grabitje.</li></ul></div>
-            <div class="rule-box" style="background:rgba(255,0,0,0.05);"><h4>DËNIMET</h4><ul><li>Warning deri në Permanent Ban.</li></ul></div>
+            <div class="rule-box"><h4>RDM & VDM</h4><ul><li>Pa vrasje pa arsye.</li><li>Makina s'është armë.</li></ul></div>
+            <div class="rule-box"><h4>METAGAMING</h4><ul><li>Mos përdor info jashtë loje.</li></ul></div>
+            <div class="rule-box"><h4>ROLEPLAY</h4><ul><li>Stay in RP / FearRP.</li></ul></div>
+            <div class="rule-box"><h4>KRIMI</h4><ul><li>Maks 2-3 në grabitje.</li><li>No Combat Logging.</li></ul></div>
+            <div class="rule-box"><h4>DEATH & NLR</h4><ul><li>NLR: 15 minuta.</li></ul></div>
+            <div class="rule-box"><h4>VOZITJA</h4><ul><li>No GTA driving.</li></ul></div>
         </div>
     </section>
 
     <section id="ticket-sec" class="hidden glass">
-        <button class="btn" style="background:#111; color:white; margin-bottom:25px;" onclick="closeSection()">⬅️ MBRAPA</button>
+        <button class="btn" style="background:#111; color:white; margin-bottom:20px;" onclick="closeSection()">⬅️ MBRAPA</button>
         <h2>SUPPORT 🎫</h2>
-        <input type="text" id="t-sub" placeholder="Subjekti...">
-        <textarea id="t-msg" rows="4" placeholder="Përshkrimi..."></textarea>
-        <button class="btn btn-main" onclick="createTicket()">DËRGO TIKETËN</button>
+        <div id="t-form">
+            <input type="text" id="t-sub" placeholder="Subjekti...">
+            <textarea id="t-msg" rows="3" placeholder="Mesazhi i parë..."></textarea>
+            <button class="btn btn-main" id="btn-ticket" onclick="createTicket()">HAP TIKETËN</button>
+        </div>
         <div id="my-tickets" style="margin-top:30px;"></div>
     </section>
 
     <section id="suggest-sec" class="hidden glass">
-        <button class="btn" style="background:#111; color:white; margin-bottom:25px;" onclick="closeSection()">⬅️ MBRAPA</button>
+        <button class="btn" style="background:#111; color:white; margin-bottom:20px;" onclick="closeSection()">⬅️ MBRAPA</button>
         <h2>SUGJERIME 💡</h2>
-        <textarea id="s-msg" rows="4" placeholder="Sugjerimi juaj..."></textarea>
-        <button class="btn btn-main" onclick="postSuggestion()">POSTO</button>
+        <textarea id="s-msg" rows="4" placeholder="Shkruaj sugjerimin..."></textarea>
+        <button class="btn btn-main" id="btn-suggest" onclick="postSuggestion()">POSTO SUGJERIMIN</button>
         <div id="suggest-list" style="margin-top:30px;"></div>
     </section>
 </div>
@@ -148,49 +134,83 @@
     let session = null;
 
     function toggleAuth() { document.getElementById('login-form').classList.toggle('hidden'); document.getElementById('reg-form').classList.toggle('hidden'); }
-
+    
     function openSection(id) {
         document.getElementById('main-hub').classList.add('hidden');
         document.getElementById('content-area').classList.remove('hidden');
-        ['about-server-sec', 'staff-sec', 'about-sec', 'ticket-sec', 'suggest-sec'].forEach(s => document.getElementById(s).classList.add('hidden'));
+        ['about-server-sec', 'about-sec', 'ticket-sec', 'suggest-sec', 'staff-sec'].forEach(s => {if(document.getElementById(s)) document.getElementById(s).classList.add('hidden')});
         document.getElementById(id).classList.remove('hidden');
         if(id === 'ticket-sec') renderMyTickets();
         if(id === 'suggest-sec') renderSuggests();
     }
+    
     function closeSection() { document.getElementById('content-area').classList.add('hidden'); document.getElementById('main-hub').classList.remove('hidden'); }
 
     function handleRegister() {
         const u = document.getElementById('r-user').value.trim();
         const p = document.getElementById('r-pass').value.trim();
-        if(u && p) { users.push({u, p}); localStorage.setItem('ae_u', JSON.stringify(users)); alert("U krijua!"); toggleAuth(); }
+        if(u && p) { users.push({u, p, lastSuggest: 0}); localStorage.setItem('ae_u', JSON.stringify(users)); alert("Llogaria u krijua!"); toggleAuth(); }
     }
 
     function handleLogin() {
         const u = document.getElementById('l-user').value.trim();
         const p = document.getElementById('l-pass').value.trim();
         const f = users.find(x => x.u === u && x.p === p);
-        if(f) { session = f; document.getElementById('landing-page').classList.add('hidden'); document.getElementById('main-hub').classList.remove('hidden'); document.getElementById('welcome-user').innerText = f.u; } else alert("Gabim!");
+        if(f) { session = f; document.getElementById('landing-page').classList.add('hidden'); document.getElementById('main-hub').classList.remove('hidden'); document.getElementById('welcome-user').innerText = f.u; }
     }
 
+    // TICKET SYSTEM (5s Cooldown & Max 1 Ticket)
     function createTicket() {
+        if(tickets.some(t => t.owner === session.u && t.status === 'HAPUR')) return alert("Keni një tiketë hapur!");
         const sub = document.getElementById('t-sub').value;
         const msg = document.getElementById('t-msg').value;
-        if(sub && msg) { tickets.push({owner: session.u, sub, msg, status: 'HAPUR'}); localStorage.setItem('ae_t', JSON.stringify(tickets)); renderMyTickets(); }
+        const btn = document.getElementById('btn-ticket');
+
+        if(sub && msg) {
+            tickets.push({owner: session.u, sub, chat: [{u: session.u, m: msg}], status: 'HAPUR', id: Date.now()});
+            localStorage.setItem('ae_t', JSON.stringify(tickets));
+            
+            btn.disabled = true;
+            btn.innerText = "PRIT 5s...";
+            setTimeout(() => { btn.disabled = false; btn.innerText = "HAP TIKETËN"; }, 5000); // 5s Cooldown
+            
+            renderMyTickets();
+            document.getElementById('t-sub').value = "";
+            document.getElementById('t-msg').value = "";
+        }
     }
 
     function renderMyTickets() {
         const div = document.getElementById('my-tickets'); div.innerHTML = "";
-        tickets.filter(x => x.owner === session.u).forEach(t => { div.innerHTML += `<div style="background:#111; padding:15px; border-radius:10px; margin-bottom:10px;"><b>${t.sub}</b><p style="font-size:0.8rem; color:#666;">${t.msg}</p></div>`; });
+        tickets.filter(x => x.owner === session.u).forEach(t => {
+            const chatHtml = t.chat.map(c => `<div class="chat-msg"><b>${c.u}:</b> ${c.m}</div>`).join('');
+            div.innerHTML += `<div style="background:#111; padding:20px; border-radius:15px; margin-bottom:15px;"><h4>${t.sub}</h4><div style="margin:10px 0;">${chatHtml}</div></div>`;
+        });
     }
 
+    // SUGGESTION SYSTEM (24h Limit)
     function postSuggestion() {
         const m = document.getElementById('s-msg').value;
-        if(m) { suggests.push({u: session.u, m}); localStorage.setItem('ae_s', JSON.stringify(suggests)); renderSuggests(); document.getElementById('s-msg').value = ""; }
+        const userIdx = users.findIndex(x => x.u === session.u);
+        const now = Date.now();
+
+        // 24h = 86,400,000 milisekonda
+        if(now - users[userIdx].lastSuggest < 86400000) return alert("Mund të postoni vetëm 1 sugjerim në 24 orë!");
+
+        if(m) {
+            suggests.push({u: session.u, m});
+            users[userIdx].lastSuggest = now;
+            localStorage.setItem('ae_s', JSON.stringify(suggests));
+            localStorage.setItem('ae_u', JSON.stringify(users));
+            renderSuggests();
+            document.getElementById('s-msg').value = "";
+            alert("Sugjerimi u postua!");
+        }
     }
 
     function renderSuggests() {
         const div = document.getElementById('suggest-list'); div.innerHTML = "";
-        suggests.slice().reverse().forEach(s => { div.innerHTML += `<div style="background:#111; padding:15px; border-radius:10px; margin-bottom:10px;"><b>${s.u}:</b> ${s.m}</div>`; });
+        suggests.slice().reverse().forEach(s => { div.innerHTML += `<div style="background:#111; padding:15px; border-radius:10px; margin-bottom:10px; border-left: 3px solid var(--red);"><b>${s.u}:</b> ${s.m}</div>`; });
     }
 </script>
 </body>
