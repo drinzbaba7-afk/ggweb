@@ -33,10 +33,15 @@
 
         .btn { padding: 14px 28px; border-radius: 12px; font-weight: 700; cursor: pointer; transition: 0.3s; border: none; text-transform: uppercase; font-size: 0.8rem; }
         .btn-main { background: var(--red); color: white; }
-        .btn-main:disabled { background: #333; cursor: not-allowed; }
+        .btn-main:disabled { background: #333; cursor: not-allowed; opacity: 0.6; }
         
         input, textarea { width: 100%; padding: 15px; background: #0d0d0d; border: 1px solid #1a1a1a; color: white; border-radius: 12px; margin-bottom: 15px; outline: none; }
-        .chat-msg { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; margin-bottom: 8px; font-size: 0.85rem; }
+        
+        /* Chat Design */
+        .chat-box { background: #000; border-radius: 12px; padding: 15px; height: 250px; overflow-y: auto; margin-bottom: 15px; border: 1px solid #111; }
+        .chat-msg { margin-bottom: 10px; padding: 10px; border-radius: 10px; font-size: 0.85rem; max-width: 80%; }
+        .msg-player { background: #1a1a1a; align-self: flex-start; margin-right: auto; }
+        .msg-staff { background: var(--red); color: white; margin-left: auto; }
     </style>
 </head>
 <body>
@@ -84,13 +89,23 @@
 
 <div id="content-area" class="container hidden animate" style="padding-bottom: 100px;">
     
+    <section id="staff-sec" class="hidden glass">
+        <button class="btn" style="background:#111; color:white; margin-bottom:20px;" onclick="closeSection()">⬅️ MBRAPA</button>
+        <h2 style="margin-bottom: 20px;">STAFF TEAM 🛡️</h2>
+        <div class="info-grid">
+            <div class="info-card"><img src="https://cdn.discordapp.com/avatars/1231577819746926703/a_04a60086a9b90d531dedb42b777af0b3.gif?size=1024" style="width:60px; border-radius:50%; border:2px solid var(--red); margin-bottom:10px;"><h4>p8h3</h4><p>Founder</p></div>
+            <div class="info-card"><img src="https://cdn.discordapp.com/avatars/1264598611791183997/630c1f74b7029e0889e4eebf32f1a4fd.webp?size=1024" style="width:60px; border-radius:50%; border:2px solid var(--red); margin-bottom:10px;"><h4>jackknwt</h4><p>Founder</p></div>
+            <div class="info-card"><img src="https://cdn.discordapp.com/avatars/1362077776424730627/72a61561e0d28513afdbcdedc1f9646f.webp?size=1024" style="width:60px; border-radius:50%; border:2px solid var(--red); margin-bottom:10px;"><h4>dr1nzy06</h4><p>Head Dev</p></div>
+        </div>
+    </section>
+
     <section id="about-server-sec" class="hidden glass">
         <button class="btn" style="background:#111; color:white; margin-bottom:20px;" onclick="closeSection()">⬅️ MBRAPA</button>
         <h2>RRETH SERVERIT 🏛️</h2>
         <div class="info-grid">
-            <div class="info-card"><i>🏙️</i><h4>EKONOMI</h4><p>Sistem i balancuar.</p></div>
-            <div class="info-card"><i>🚓</i><h4>POLICIA</h4><p>Sisteme moderne MDT.</p></div>
-            <div class="info-card"><i>🏎️</i><h4>MAKINAT</h4><p>300+ Importe.</p></div>
+            <div class="info-card"><i>🏙️</i><h4>EKONOMI</h4><p>Sistem realist.</p></div>
+            <div class="info-card"><i>🚓</i><h4>POLICIA</h4><p>MDT Modern.</p></div>
+            <div class="info-card"><i>🏎️</i><h4>IMPORTET</h4><p>300+ Makina.</p></div>
         </div>
     </section>
 
@@ -98,11 +113,11 @@
         <button class="btn" style="background:#111; color:white; margin-bottom:20px;" onclick="closeSection()">⬅️ MBRAPA</button>
         <h2 style="margin-bottom: 20px;">OFFICIAL RULES ⚖️</h2>
         <div class="rules-grid">
-            <div class="rule-box"><h4>RDM & VDM</h4><ul><li>Pa vrasje pa arsye.</li><li>Makina s'është armë.</li></ul></div>
-            <div class="rule-box"><h4>METAGAMING</h4><ul><li>Mos përdor info jashtë loje.</li></ul></div>
+            <div class="rule-box"><h4>RDM/VDM</h4><ul><li>Nuk lejohet vrasja pa arsye RP.</li></ul></div>
+            <div class="rule-box"><h4>META/POWER</h4><ul><li>Mos përdor info jashtë loje.</li></ul></div>
+            <div class="rule-box"><h4>KRIMI</h4><ul><li>Maks 2-3 veta në grabitje.</li></ul></div>
             <div class="rule-box"><h4>ROLEPLAY</h4><ul><li>Stay in RP / FearRP.</li></ul></div>
-            <div class="rule-box"><h4>KRIMI</h4><ul><li>Maks 2-3 në grabitje.</li><li>No Combat Logging.</li></ul></div>
-            <div class="rule-box"><h4>DEATH & NLR</h4><ul><li>NLR: 15 minuta.</li></ul></div>
+            <div class="rule-box"><h4>DEATH & NLR</h4><ul><li>NLR: 15 minuta pas vdekjes.</li></ul></div>
             <div class="rule-box"><h4>VOZITJA</h4><ul><li>No GTA driving.</li></ul></div>
         </div>
     </section>
@@ -110,19 +125,26 @@
     <section id="ticket-sec" class="hidden glass">
         <button class="btn" style="background:#111; color:white; margin-bottom:20px;" onclick="closeSection()">⬅️ MBRAPA</button>
         <h2>SUPPORT 🎫</h2>
-        <div id="t-form">
-            <input type="text" id="t-sub" placeholder="Subjekti...">
-            <textarea id="t-msg" rows="3" placeholder="Mesazhi i parë..."></textarea>
-            <button class="btn btn-main" id="btn-ticket" onclick="createTicket()">HAP TIKETËN</button>
+        <div id="t-create-view">
+            <input type="text" id="t-sub" placeholder="Subjekti i tiketës...">
+            <textarea id="t-initial-msg" rows="3" placeholder="Shpjegoni problemin..."></textarea>
+            <button class="btn btn-main" id="btn-open-ticket" onclick="openTicket()">HAP TIKETËN</button>
         </div>
-        <div id="my-tickets" style="margin-top:30px;"></div>
+        <div id="active-ticket-view" class="hidden">
+            <h3 id="active-ticket-sub" style="color:var(--red); margin-bottom:10px;"></h3>
+            <div class="chat-box" id="ticket-chat-display"></div>
+            <div style="display:flex; gap:10px;">
+                <input type="text" id="t-reply-msg" style="margin:0;" placeholder="Shkruaj mesazhin...">
+                <button class="btn btn-main" id="btn-reply-ticket" onclick="replyTicket()">DËRGO</button>
+            </div>
+        </div>
     </section>
 
     <section id="suggest-sec" class="hidden glass">
         <button class="btn" style="background:#111; color:white; margin-bottom:20px;" onclick="closeSection()">⬅️ MBRAPA</button>
         <h2>SUGJERIME 💡</h2>
-        <textarea id="s-msg" rows="4" placeholder="Shkruaj sugjerimin..."></textarea>
-        <button class="btn btn-main" id="btn-suggest" onclick="postSuggestion()">POSTO SUGJERIMIN</button>
+        <textarea id="s-msg" rows="4" placeholder="Sugjerimi juaj..."></textarea>
+        <button class="btn btn-main" id="btn-suggest" onclick="postSuggestion()">POSTO</button>
         <div id="suggest-list" style="margin-top:30px;"></div>
     </section>
 </div>
@@ -138,9 +160,9 @@
     function openSection(id) {
         document.getElementById('main-hub').classList.add('hidden');
         document.getElementById('content-area').classList.remove('hidden');
-        ['about-server-sec', 'about-sec', 'ticket-sec', 'suggest-sec', 'staff-sec'].forEach(s => {if(document.getElementById(s)) document.getElementById(s).classList.add('hidden')});
+        ['about-server-sec', 'about-sec', 'ticket-sec', 'suggest-sec', 'staff-sec'].forEach(s => document.getElementById(s).classList.add('hidden'));
         document.getElementById(id).classList.remove('hidden');
-        if(id === 'ticket-sec') renderMyTickets();
+        if(id === 'ticket-sec') checkActiveTicket();
         if(id === 'suggest-sec') renderSuggests();
     }
     
@@ -149,7 +171,7 @@
     function handleRegister() {
         const u = document.getElementById('r-user').value.trim();
         const p = document.getElementById('r-pass').value.trim();
-        if(u && p) { users.push({u, p, lastSuggest: 0}); localStorage.setItem('ae_u', JSON.stringify(users)); alert("Llogaria u krijua!"); toggleAuth(); }
+        if(u && p) { users.push({u, p, lastSuggest: 0}); localStorage.setItem('ae_u', JSON.stringify(users)); alert("U krijua!"); toggleAuth(); }
     }
 
     function handleLogin() {
@@ -159,43 +181,65 @@
         if(f) { session = f; document.getElementById('landing-page').classList.add('hidden'); document.getElementById('main-hub').classList.remove('hidden'); document.getElementById('welcome-user').innerText = f.u; }
     }
 
-    // TICKET SYSTEM (5s Cooldown & Max 1 Ticket)
-    function createTicket() {
-        if(tickets.some(t => t.owner === session.u && t.status === 'HAPUR')) return alert("Keni një tiketë hapur!");
-        const sub = document.getElementById('t-sub').value;
-        const msg = document.getElementById('t-msg').value;
-        const btn = document.getElementById('btn-ticket');
-
-        if(sub && msg) {
-            tickets.push({owner: session.u, sub, chat: [{u: session.u, m: msg}], status: 'HAPUR', id: Date.now()});
-            localStorage.setItem('ae_t', JSON.stringify(tickets));
-            
-            btn.disabled = true;
-            btn.innerText = "PRIT 5s...";
-            setTimeout(() => { btn.disabled = false; btn.innerText = "HAP TIKETËN"; }, 5000); // 5s Cooldown
-            
-            renderMyTickets();
-            document.getElementById('t-sub').value = "";
-            document.getElementById('t-msg').value = "";
+    // TICKET LOGIC
+    function checkActiveTicket() {
+        const active = tickets.find(t => t.owner === session.u && t.status === 'HAPUR');
+        if(active) {
+            document.getElementById('t-create-view').classList.add('hidden');
+            document.getElementById('active-ticket-view').classList.remove('hidden');
+            document.getElementById('active-ticket-sub').innerText = active.sub;
+            renderChat(active);
+        } else {
+            document.getElementById('t-create-view').classList.remove('hidden');
+            document.getElementById('active-ticket-view').classList.add('hidden');
         }
     }
 
-    function renderMyTickets() {
-        const div = document.getElementById('my-tickets'); div.innerHTML = "";
-        tickets.filter(x => x.owner === session.u).forEach(t => {
-            const chatHtml = t.chat.map(c => `<div class="chat-msg"><b>${c.u}:</b> ${c.m}</div>`).join('');
-            div.innerHTML += `<div style="background:#111; padding:20px; border-radius:15px; margin-bottom:15px;"><h4>${t.sub}</h4><div style="margin:10px 0;">${chatHtml}</div></div>`;
-        });
+    function openTicket() {
+        const sub = document.getElementById('t-sub').value;
+        const msg = document.getElementById('t-initial-msg').value;
+        if(sub && msg) {
+            const newT = { id: Date.now(), owner: session.u, sub, status: 'HAPUR', chat: [{u: session.u, m: msg, time: Date.now()}] };
+            tickets.push(newT);
+            localStorage.setItem('ae_t', JSON.stringify(tickets));
+            checkActiveTicket();
+        }
     }
 
-    // SUGGESTION SYSTEM (24h Limit)
+    function replyTicket() {
+        const msg = document.getElementById('t-reply-msg').value;
+        const btn = document.getElementById('btn-reply-ticket');
+        if(!msg) return;
+
+        const idx = tickets.findIndex(t => t.owner === session.u && t.status === 'HAPUR');
+        tickets[idx].chat.push({ u: session.u, m: msg, time: Date.now() });
+        localStorage.setItem('ae_t', JSON.stringify(tickets));
+        
+        document.getElementById('t-reply-msg').value = "";
+        renderChat(tickets[idx]);
+
+        // 5s Cooldown
+        btn.disabled = true;
+        setTimeout(() => btn.disabled = false, 5000);
+    }
+
+    function renderChat(ticket) {
+        const display = document.getElementById('ticket-chat-display');
+        display.innerHTML = ticket.chat.map(c => `
+            <div class="chat-msg ${c.u === session.u ? 'msg-player' : 'msg-staff'}">
+                <b>${c.u}:</b> ${c.m}
+            </div>
+        `).join('');
+        display.scrollTop = display.scrollHeight;
+    }
+
+    // SUGGESTION LOGIC (24h)
     function postSuggestion() {
         const m = document.getElementById('s-msg').value;
         const userIdx = users.findIndex(x => x.u === session.u);
         const now = Date.now();
 
-        // 24h = 86,400,000 milisekonda
-        if(now - users[userIdx].lastSuggest < 86400000) return alert("Mund të postoni vetëm 1 sugjerim në 24 orë!");
+        if(now - users[userIdx].lastSuggest < 86400000) return alert("Vetëm 1 sugjerim në 24 orë!");
 
         if(m) {
             suggests.push({u: session.u, m});
@@ -204,13 +248,16 @@
             localStorage.setItem('ae_u', JSON.stringify(users));
             renderSuggests();
             document.getElementById('s-msg').value = "";
-            alert("Sugjerimi u postua!");
         }
     }
 
     function renderSuggests() {
-        const div = document.getElementById('suggest-list'); div.innerHTML = "";
-        suggests.slice().reverse().forEach(s => { div.innerHTML += `<div style="background:#111; padding:15px; border-radius:10px; margin-bottom:10px; border-left: 3px solid var(--red);"><b>${s.u}:</b> ${s.m}</div>`; });
+        const div = document.getElementById('suggest-list');
+        div.innerHTML = suggests.slice().reverse().map(s => `
+            <div style="background:#111; padding:15px; border-radius:10px; margin-bottom:10px; border-left:3px solid var(--red);">
+                <b>${s.u}:</b> ${s.m}
+            </div>
+        `).join('');
     }
 </script>
 </body>
