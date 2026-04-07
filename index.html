@@ -23,29 +23,31 @@
 
         /* Navigation Grid */
         .nav-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin: 40px 0; }
-        .nav-card { background: var(--card); padding: 40px; border-radius: 24px; text-align: center; cursor: pointer; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border: 1px solid #1a1a1a; }
+        .nav-card { background: var(--card); padding: 40px; border-radius: 24px; text-align: center; cursor: pointer; transition: 0.4s; border: 1px solid #1a1a1a; }
         .nav-card:hover { transform: translateY(-10px); border-color: var(--red); box-shadow: 0 20px 40px rgba(255,0,0,0.1); }
         .nav-card i { font-size: 2.5rem; display: block; margin-bottom: 15px; }
 
+        /* Rules Layout */
+        .rules-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; }
+        .rule-box { background: #111; padding: 20px; border-radius: 12px; border-left: 3px solid var(--red); }
+        .rule-box h4 { color: var(--red); text-transform: uppercase; margin-bottom: 10px; font-size: 0.9rem; letter-spacing: 1px; }
+        .rule-box ul { list-style: none; color: #bbb; font-size: 0.85rem; }
+        .rule-box li { margin-bottom: 5px; }
+
         /* Buttons */
-        .btn { padding: 14px 28px; border-radius: 12px; font-weight: 700; cursor: pointer; transition: 0.3s; border: none; text-transform: uppercase; font-size: 0.9rem; }
+        .btn { padding: 14px 28px; border-radius: 12px; font-weight: 700; cursor: pointer; transition: 0.3s; border: none; text-transform: uppercase; font-size: 0.8rem; }
         .btn-main { background: var(--red); color: white; box-shadow: 0 10px 20px rgba(255,0,0,0.2); }
         .btn-main:hover:not(:disabled) { transform: scale(1.05); background: #ff3333; }
         .btn-main:disabled { background: #333; cursor: not-allowed; opacity: 0.5; }
 
-        /* Content Sections */
-        .section-title { font-size: 2rem; margin-bottom: 30px; display: flex; align-items: center; gap: 15px; }
+        .section-title { font-size: 2rem; margin-bottom: 30px; display: flex; align-items: center; gap: 15px; text-transform: uppercase; font-weight: 800; }
         .section-title::after { content: ""; height: 2px; flex: 1; background: linear-gradient(to right, var(--red), transparent); }
 
         /* Chat UI */
         .chat-container { background: #000; border-radius: 15px; padding: 20px; height: 350px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; margin: 15px 0; border: 1px solid #111; }
         .bubble { padding: 12px 16px; border-radius: 15px; max-width: 80%; font-size: 0.9rem; line-height: 1.4; }
-        .b-user { background: #1a1a1a; align-self: flex-start; border-bottom-left-radius: 2px; }
-        .b-staff { background: var(--red); color: white; align-self: flex-end; border-bottom-right-radius: 2px; }
-
-        /* Info Grid */
-        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
-        .info-item { background: #111; padding: 20px; border-radius: 15px; border-left: 4px solid var(--red); }
+        .b-user { background: #1a1a1a; align-self: flex-start; }
+        .b-staff { background: var(--red); color: white; align-self: flex-end; }
 
         input, textarea { width: 100%; padding: 15px; background: #111; border: 1px solid #222; color: white; border-radius: 12px; margin: 10px 0; outline: none; transition: 0.3s; }
         input:focus { border-color: var(--red); }
@@ -57,10 +59,10 @@
     <section class="hero">
         <div class="container">
             <h1>ALBANIAN<br><span>EMPIRE RP</span></h1>
-            <p>Mirësevini në perandorinë më të madhe të Roleplay-it Shqiptar. Eksperiencë unike, ekonomi reale dhe komunitet elitar.</p>
+            <p>Rregulla strikte, RP serioz dhe komunitet elitar. Bashkohu në perandorinë tonë.</p>
             <div style="display:flex; gap:15px; margin-top:20px;">
-                <button class="btn btn-main" onclick="scrollToAuth()">BASHKOHU TANI</button>
-                <button class="btn" style="background:#1a1a1a; color:white;" onclick="showAboutManual()">RRETH SERVERIT</button>
+                <button class="btn btn-main" onclick="scrollToAuth()">LUZ TANI</button>
+                <button class="btn" style="background:#1a1a1a; color:white;" onclick="scrollToAuth()">RREGULLAT</button>
             </div>
         </div>
     </section>
@@ -68,14 +70,14 @@
     <div class="container" id="auth-anchor">
         <div id="auth-box" class="glass" style="max-width: 450px; margin: -50px auto 100px;">
             <div id="login-form">
-                <h2 style="text-align:center; margin-bottom:20px;">Kyçu në Portal</h2>
+                <h2 style="text-align:center; margin-bottom:20px;">Hyrja</h2>
                 <input type="text" id="l-user" placeholder="Emri i përdoruesit">
                 <input type="password" id="l-pass" placeholder="Fjalëkalimi">
                 <button class="btn btn-main" style="width:100%" onclick="handleLogin()">HYR</button>
-                <p onclick="toggleAuth()" style="text-align:center; color:#666; margin-top:15px; cursor:pointer; font-size:0.8rem;">Nuk ke llogari? Regjistrohu</p>
+                <p onclick="toggleAuth()" style="text-align:center; color:#666; margin-top:15px; cursor:pointer; font-size:0.8rem;">Krijo llogari të re</p>
             </div>
             <div id="reg-form" class="hidden">
-                <h2 style="text-align:center; margin-bottom:20px;">Krijo Llogari</h2>
+                <h2 style="text-align:center; margin-bottom:20px;">Regjistrimi</h2>
                 <input type="text" id="r-user" placeholder="Username IC">
                 <input type="password" id="r-pass" placeholder="Password">
                 <button class="btn btn-main" style="width:100%" onclick="handleRegister()">REGJISTROHU</button>
@@ -93,19 +95,19 @@
 
     <div class="nav-grid">
         <div class="nav-card" onclick="openSection('about-sec')">
-            <i>🏙️</i>
-            <h3>RRETH SERVERIT</h3>
-            <p>Mëso gjithçka mbi sistemet tona.</p>
+            <i>📜</i>
+            <h3>OFFICIAL RULES</h3>
+            <p>Rregullat që duhet të zbatosh.</p>
         </div>
         <div class="nav-card" onclick="openSection('ticket-sec')">
             <i>🎫</i>
             <h3>SUPPORT CHAT</h3>
-            <p>Bisedo me stafin për çdo problem.</p>
+            <p>1 Tiketë aktive / 5s Cooldown</p>
         </div>
         <div class="nav-card" onclick="openSection('suggest-sec')">
             <i>💡</i>
             <h3>SUGJERIME</h3>
-            <p>Na ndihmo të rritemi bashkë.</p>
+            <p>1 Sugjerim / 24 Orë</p>
         </div>
     </div>
 </div>
@@ -114,23 +116,60 @@
     
     <section id="about-sec" class="hidden glass">
         <button class="btn" style="background:#222; color:white; margin-bottom:20px;" onclick="closeSection()">⬅️ MBRAPA</button>
-        <div class="section-title">Informacione Mbi Serverin</div>
-        <div class="info-grid">
-            <div class="info-item">
-                <h4>🚔 Policia & Emergjenca</h4>
-                <p style="font-size:0.9rem; color:#aaa; margin-top:5px;">Sistemi më modern i MDT, gradave dhe trajnimeve reale për forcat e rendit.</p>
+        <div class="section-title">Rregullat e Serverit ⚖️</div>
+        
+        <div class="rules-container">
+            <div class="rule-box">
+                <h4>Deathmatch (RDM/VDM)</h4>
+                <ul>
+                    <li>• RDM: Nuk lejohet të vrasësh dikë pa arsye RP.</li>
+                    <li>• VDM: Nuk përdoret makina si armë pa arsye RP.</li>
+                </ul>
             </div>
-            <div class="info-item">
-                <h4>🏎️ Makina & Importe</h4>
-                <p style="font-size:0.9rem; color:#aaa; margin-top:5px;">Mbi 400 makina të modifikuara dhe mundësi për makina personave unike.</p>
+            <div class="rule-box">
+                <h4>In-Game Intel</h4>
+                <ul>
+                    <li>• Metagaming: Mos përdor informata jashtë lojës.</li>
+                    <li>• Powergaming: Mos bëj veprime joreale.</li>
+                </ul>
             </div>
-            <div class="info-item">
-                <h4>💼 Bizneset & Ekonomia</h4>
-                <p style="font-size:0.9rem; color:#aaa; margin-top:5px;">Ekonomi mesatare ku mund të blini dyqane, pika karburanti dhe shtëpi.</p>
+            <div class="rule-box">
+                <h4>Roleplay Serioz</h4>
+                <ul>
+                    <li>• Stay in RP: Gjithmonë qëndro në karakter.</li>
+                    <li>• FearRP: I detyrueshëm (frika për jetën).</li>
+                    <li>• Combat Logging: Ndalohet dalja gjatë aksionit (BAN).</li>
+                </ul>
             </div>
-            <div class="info-item">
-                <h4>🎭 Roleplay i Pastër</h4>
-                <p style="font-size:0.9rem; color:#aaa; margin-top:5px;">Rregulla strikte për të siguruar që çdo skenar të jetë sa më real.</p>
+            <div class="rule-box">
+                <h4>Krimi & Grabitjet</h4>
+                <ul>
+                    <li>• Maks 2-3 lojtarë në grabitje.</li>
+                    <li>• Duhet arsye RP për çdo krim.</li>
+                    <li>• NLR: Harron ngjarjen pas vdekjes.</li>
+                </ul>
+            </div>
+            <div class="rule-box">
+                <h4>Vozitja & Trafiku</h4>
+                <ul>
+                    <li>• No fail driving (makina s'është tank).</li>
+                    <li>• Respekto trafikun kur është e mundur.</li>
+                </ul>
+            </div>
+            <div class="rule-box">
+                <h4>Sistemi & Bug-et</h4>
+                <ul>
+                    <li>• Cheats / Hacks: AUTO BAN.</li>
+                    <li>• Shfrytëzimi i bug-eve: BAN.</li>
+                    <li>• Respekto vendimet e staff-it.</li>
+                </ul>
+            </div>
+            <div class="rule-box" style="border-color: #fff;">
+                <h4>Dënimet</h4>
+                <ul>
+                    <li>• Warning | Kick</li>
+                    <li>• Temp Ban | Permanent Ban</li>
+                </ul>
             </div>
         </div>
     </section>
@@ -138,56 +177,44 @@
     <section id="ticket-sec" class="hidden glass">
         <button class="btn" style="background:#222; color:white; margin-bottom:20px;" onclick="closeSection()">⬅️ MBRAPA</button>
         <div class="section-title">Support Chat 🎫</div>
-        
         <div id="t-create-box">
-            <input type="text" id="t-sub" placeholder="Subjekti i tiketës (p.sh. Pyetje për Donacion)">
-            <textarea id="t-msg" placeholder="Shpjegoni arsyen e kontaktit..."></textarea>
+            <input type="text" id="t-sub" placeholder="Subjekti i tiketës...">
+            <textarea id="t-msg" placeholder="Përshkruaj problemin..."></textarea>
             <button class="btn btn-main" id="btn-open-t" onclick="createTicket()">HAP TIKETËN</button>
             <p id="t-warn" style="color:var(--red); font-size:0.8rem; margin-top:10px;" class="hidden">Mund të keni vetëm 1 tiketë aktive!</p>
         </div>
-
         <div id="my-tickets" style="margin-top:40px;"></div>
     </section>
 
     <section id="suggest-sec" class="hidden glass">
         <button class="btn" style="background:#222; color:white; margin-bottom:20px;" onclick="closeSection()">⬅️ MBRAPA</button>
         <div class="section-title">Sugjerime Publike 💡</div>
-        <textarea id="s-msg" placeholder="Çfarë duhet të shtojmë në server?"></textarea>
-        <button class="btn btn-main" id="btn-s" onclick="postSuggestion()">POSTO SUGJERIMIN</button>
-        <p id="s-warn" style="color:var(--red); font-size:0.8rem; margin-top:10px;" class="hidden">Prisni 24 orë për sugjerimin tjetër.</p>
-        
+        <textarea id="s-msg" placeholder="Shkruaj një sugjerim..."></textarea>
+        <button class="btn btn-main" id="btn-s" onclick="postSuggestion()">POSTO</button>
         <div id="suggest-list" style="margin-top:40px;"></div>
     </section>
 
     <section id="admin-panel" class="hidden glass">
-        <div style="display:flex; justify-content:space-between; align-items:center;">
-            <h2 style="color:var(--red)">STAFF DASHBOARD 🛡️</h2>
-            <button class="btn btn-main btn-small" onclick="location.reload()">LOGOUT</button>
-        </div>
-        <hr style="border:1px solid #222; margin:30px 0;">
-        <h3>Tiketat Aktive</h3>
-        <div id="admin-tickets"></div>
-        <h3 style="margin-top:50px;">Sugjerimet</h3>
+        <h2 style="color:var(--red)">STAFF DASHBOARD 🛡️</h2>
+        <div id="admin-tickets" style="margin-top:20px;"></div>
+        <h3 style="margin-top:40px;">Sugjerimet</h3>
         <div id="admin-suggests"></div>
     </section>
 </div>
 
 <script>
     const _secret = "aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTQ5MDgzNzA4ODQ0OTMzNTE2L3V2OEE3Y3FwNWRjQXFzX3l1cjJVeVR2WDFrdU9UQnA2dVNxbVVnLXNoT25Kb1lXQVFfNENnWEY2c3dsUW9ON215Nk9U";
-    
     let users = JSON.parse(localStorage.getItem('ae_u')) || [];
     let tickets = JSON.parse(localStorage.getItem('ae_t')) || [];
     let suggests = JSON.parse(localStorage.getItem('ae_s')) || [];
     let session = null;
     let chatCooldown = false;
 
-    // Navigation & UI
     function toggleAuth() {
         document.getElementById('login-form').classList.toggle('hidden');
         document.getElementById('reg-form').classList.toggle('hidden');
     }
     function scrollToAuth() { document.getElementById('auth-anchor').scrollIntoView({behavior: 'smooth'}); }
-    function showAboutManual() { alert("Mirësevini! Kyçuni për të parë udhëzuesin e plotë."); }
 
     function openSection(id) {
         document.getElementById('main-hub').classList.add('hidden');
@@ -202,12 +229,10 @@
         document.getElementById('main-hub').classList.remove('hidden');
     }
 
-    // Auth
     function handleRegister() {
         const u = document.getElementById('r-user').value.trim();
         const p = document.getElementById('r-pass').value.trim();
         if(u && p) {
-            if(users.find(x => x.u === u)) return alert("Username ekziston!");
             users.push({u, p, lastS: 0});
             localStorage.setItem('ae_u', JSON.stringify(users));
             alert("U regjistruat!"); toggleAuth();
@@ -217,7 +242,6 @@
     function handleLogin() {
         const u = document.getElementById('l-user').value.trim();
         const p = document.getElementById('l-pass').value.trim();
-
         if(u === 'albadmin' && p === 'albadminpanel') {
             session = {u: "ADMIN", role: 'admin'};
             document.getElementById('landing-page').classList.add('hidden');
@@ -225,45 +249,34 @@
             renderAdmin();
             return;
         }
-
         const f = users.find(x => x.u === u && x.p === p);
         if(f) {
             session = f;
             document.getElementById('landing-page').classList.add('hidden');
             document.getElementById('main-hub').classList.remove('hidden');
             document.getElementById('welcome-user').innerText = f.u;
-        } else alert("Gabim në hyrje!");
+        } else alert("Gabim!");
     }
 
-    // Tickets
     function createTicket() {
-        const active = tickets.some(t => t.owner === session.u && t.status === 'OPEN');
-        if(active) return document.getElementById('t-warn').classList.remove('hidden');
-
+        if(tickets.some(t => t.owner === session.u && t.status === 'OPEN')) return document.getElementById('t-warn').classList.remove('hidden');
         const sub = document.getElementById('t-sub').value;
         const msg = document.getElementById('t-msg').value;
         if(!sub || !msg) return alert("Plotëso fushat!");
-
         const t = { id: Date.now(), owner: session.u, sub, chat: [{u: session.u, m: msg}], status: 'OPEN' };
         tickets.push(t);
         localStorage.setItem('ae_t', JSON.stringify(tickets));
         renderMyTickets();
-        fetch(atob(_secret), {method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({content: `🎫 Tiketë e re: **${sub}** nga ${session.u}`})});
     }
 
     function sendReply(id, isAdmin = false) {
         if(!isAdmin && chatCooldown) return alert("Prit 5 sekonda!");
         const input = document.getElementById(`reply-${id}`);
         if(!input.value) return;
-
         const idx = tickets.findIndex(x => x.id === id);
         tickets[idx].chat.push({u: isAdmin ? "STAFF" : session.u, m: input.value});
         localStorage.setItem('ae_t', JSON.stringify(tickets));
-
-        if(!isAdmin) {
-            chatCooldown = true;
-            setTimeout(() => chatCooldown = false, 5000);
-        }
+        if(!isAdmin) { chatCooldown = true; setTimeout(() => chatCooldown = false, 5000); }
         input.value = "";
         isAdmin ? renderAdmin() : renderMyTickets();
     }
@@ -274,32 +287,17 @@
         list.innerHTML = "";
         const myT = tickets.filter(x => x.owner === session.u);
         myT.some(t => t.status === 'OPEN') ? box.classList.add('hidden') : box.classList.remove('hidden');
-
         myT.reverse().forEach(t => {
             const chatHtml = t.chat.map(m => `<div class="bubble ${m.u === 'STAFF' ? 'b-staff' : 'b-user'}"><b>${m.u}:</b> ${m.m}</div>`).join('');
-            list.innerHTML += `<div class="glass" style="margin-bottom:20px;">
-                <div style="display:flex; justify-content:space-between"><h4>${t.sub}</h4> <span>[${t.status}]</span></div>
-                <div class="chat-container">${chatHtml}</div>
-                <div style="display:flex; gap:10px;">
-                    <input type="text" id="reply-${t.id}" placeholder="Shkruaj mesazh..." style="margin:0;">
-                    <button class="btn btn-main btn-small" onclick="sendReply(${t.id})">DËRGO</button>
-                </div>
-            </div>`;
+            list.innerHTML += `<div class="glass" style="margin-bottom:20px;"><h4>${t.sub}</h4><div class="chat-container">${chatHtml}</div><input type="text" id="reply-${t.id}"><button class="btn btn-main btn-small" onclick="sendReply(${t.id})">Dërgo</button></div>`;
         });
     }
 
-    // Suggestions
     function postSuggestion() {
         const m = document.getElementById('s-msg').value;
         if(!m) return;
-        const now = Date.now();
-        const uIdx = users.findIndex(x => x.u === session.u);
-        if(now - users[uIdx].lastS < 86400000) return document.getElementById('s-warn').classList.remove('hidden');
-
-        suggests.push({id: now, u: session.u, m, reply: null});
-        users[uIdx].lastS = now;
+        suggests.push({id: Date.now(), u: session.u, m, reply: null});
         localStorage.setItem('ae_s', JSON.stringify(suggests));
-        localStorage.setItem('ae_u', JSON.stringify(users));
         renderSuggests();
     }
 
@@ -307,50 +305,19 @@
         const div = document.getElementById('suggest-list');
         div.innerHTML = "";
         suggests.slice().reverse().forEach(s => {
-            div.innerHTML += `<div class="glass" style="margin-bottom:15px; border-left:4px solid var(--red)">
-                <b>${s.u}:</b> ${s.m}${s.reply ? `<div style="color:var(--red); margin-top:10px;">🛡️ Staff: ${s.reply}</div>` : ''}
-            </div>`;
+            div.innerHTML += `<div class="glass" style="margin-bottom:15px; border-left:3px solid var(--red)"><b>${s.u}:</b> ${s.m}</div>`;
         });
     }
 
-    // Admin
     function renderAdmin() {
         const tDiv = document.getElementById('admin-tickets');
         tDiv.innerHTML = "";
         tickets.slice().reverse().forEach(t => {
             const chatHtml = t.chat.map(m => `<div class="bubble ${m.u === 'STAFF' ? 'b-staff' : 'b-user'}"><b>${m.u}:</b> ${m.m}</div>`).join('');
-            tDiv.innerHTML += `<div class="glass" style="margin-bottom:20px;">
-                <p>Lojtari: <b>${t.owner}</b> | ${t.sub}</p>
-                <div class="chat-container">${chatHtml}</div>
-                <input type="text" id="reply-${t.id}" placeholder="Përgjigju...">
-                <button class="btn btn-main btn-small" onclick="sendReply(${t.id}, true)">DËRGO</button>
-            </div>`;
+            tDiv.innerHTML += `<div class="glass" style="margin-bottom:20px;"><p>${t.owner} | ${t.sub}</p><div class="chat-container">${chatHtml}</div><input type="text" id="reply-${t.id}"><button class="btn btn-main btn-small" onclick="sendReply(${t.id}, true)">Dërgo</button></div>`;
         });
-
-        const sDiv = document.getElementById('admin-suggests');
-        sDiv.innerHTML = "";
-        suggests.slice().reverse().forEach(s => {
-            sDiv.innerHTML += `<div class="glass" style="margin-bottom:15px;">
-                <p><b>${s.u}</b>: ${s.m}</p>
-                <input type="text" id="s-rep-${s.id}" placeholder="Kthe përgjigje..." value="${s.reply || ''}">
-                <button class="btn btn-main btn-small" onclick="repSug(${s.id})">RUAJ</button>
-                <button class="btn btn-small" style="background:#333; margin-left:10px;" onclick="delSug(${s.id})">FSHIJ</button>
-            </div>`;
-        });
-    }
-
-    function repSug(id) {
-        const v = document.getElementById(`s-rep-${id}`).value;
-        const i = suggests.findIndex(x => x.id === id);
-        suggests[i].reply = v;
-        localStorage.setItem('ae_s', JSON.stringify(suggests));
-        renderAdmin();
-    }
-    function delSug(id) {
-        suggests = suggests.filter(x => x.id !== id);
-        localStorage.setItem('ae_s', JSON.stringify(suggests));
-        renderAdmin();
     }
 </script>
+
 </body>
 </html>
